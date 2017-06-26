@@ -1,6 +1,6 @@
-# Linux ¼¼ÇÉÔÓ¼Ç
+# Linux æŠ€å·§æ‚è®°
 
-## ÔõÑùÏÂÔØÒ»¸öÍøÕ¾
+## æ€æ ·ä¸‹è½½ä¸€ä¸ªç½‘ç«™
 * [Downloading an Entire Web Site with wget](http://www.linuxjournal.com/content/downloading-entire-web-site-wget)
 ```bash
 wget \
@@ -16,10 +16,25 @@ wget \
 ```
 
 
-## È¥³ıÒÑÖªpdfÃÜÂë»òÕß±£»¤
+## å»é™¤å·²çŸ¥pdfå¯†ç æˆ–è€…ä¿æŠ¤
 * [HowTo: Linux Remove a PDF File Password Using Command Line Options](https://www.cyberciti.biz/faq/removing-password-from-pdf-on-linux/)
 ```bash
 qpdf --password=YOURPASSWORD-HERE --decrypt input.pdf output.pdf
 
+```
+
+## å®‰è£…å­—ä½“
+* [Ubuntuå­—ä½“å®‰è£…](https://wiki.ubuntu.com/Fonts)
+```bash
+1. å°†å­—ä½“æ–‡ä»¶æ‹·è´è‡³ /usr/share/fonts, /usr/local/share/fonts, æˆ– ~/.fonts
+2. sudo fc-cache -f -v
+```
+
+## å¯¹å¤šä¸ªå¯¹è±¡åšåŒæ ·å¤„ç†
+* [Bashå‚è€ƒæ‰‹å†Œ](http://www.gnu.org/software/bash/manual/bashref.html)
+```bash
+find . -iname "*.pdf" -exec convert -input {} -output {}.jpg \;
+æˆ–è€…
+for file in *.pdf; do convert -input "$file" -output "${file/%pdf/jpg}"; done
 ```
 
