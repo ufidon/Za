@@ -22,6 +22,7 @@ wget \
 qpdf --password=YOURPASSWORD-HERE --decrypt input.pdf output.pdf
 
 ```
+* [qpdf 用法](https://www.pdflabs.com/docs/pdftk-man-page/)
 
 ## 安装字体
 * [Ubuntu字体安装](https://wiki.ubuntu.com/Fonts)
