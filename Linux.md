@@ -24,6 +24,16 @@ qpdf --password=YOURPASSWORD-HERE --decrypt input.pdf output.pdf
 ```
 * [qpdf 用法](https://www.pdflabs.com/docs/pdftk-man-page/)
 
+## pdf嵌入字体
+```bash
+gs -o 输出.pdf -sDEVICE=pdfwrite -dEmbedAllFonts=true 待嵌字体档.pdf
+```
+
+## 去除pdf内链接
+```bash
+pdfjam 待去链档.pdf
+```
+
 ## 安装字体
 * [Ubuntu字体安装](https://wiki.ubuntu.com/Fonts)
 ```bash
