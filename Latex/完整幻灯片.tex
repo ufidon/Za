@@ -1,0 +1,291 @@
+\documentclass[UTF8]{ctexbeamer}
+\xeCJKsetup{CJKmath=true}
+\setCJKmainfont{NotoSerifCJKsc-SemiBold} % CJK font
+\usetheme{Madrid}
+\usecolortheme{lily}
+\usepackage{amsmath,amsfonts,amssymb, amsthm}
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{graphicx, color}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{default}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{verbatim}
+\usepackage{booktabs}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+
+\usepackage{etoolbox}
+
+% Defining a new coordinate system for the page:
+%
+% --------------------------
+% |(-1,1)    (0,1)    (1,1)|
+% |                        |
+% |(-1,0)    (0,0)    (1,0)|
+% |                        |
+% |(-1,-1)   (0,-1)  (1,-1)|
+% --------------------------
+\makeatletter
+\def\parsecomma#1,#2\endparsecomma{\def\page@x{#1}\def\page@y{#2}}
+\tikzdeclarecoordinatesystem{page}{
+	\parsecomma#1\endparsecomma
+	\pgfpointanchor{current page}{north east}
+	% Save the upper right corner
+	\pgf@xc=\pgf@x%
+	\pgf@yc=\pgf@y%
+	% save the lower left corner
+	\pgfpointanchor{current page}{south west}
+	\pgf@xb=\pgf@x%
+	\pgf@yb=\pgf@y%
+	% Transform to the correct placement
+	\pgfmathparse{(\pgf@xc-\pgf@xb)/2.*\page@x+(\pgf@xc+\pgf@xb)/2.}
+	\expandafter\pgf@x\expandafter=\pgfmathresult pt
+	\pgfmathparse{(\pgf@yc-\pgf@yb)/2.*\page@y+(\pgf@yc+\pgf@yb)/2.}
+	\expandafter\pgf@y\expandafter=\pgfmathresult pt
+}
+\makeatother
+
+\makeatletter
+\apptocmd{\beamer@@frametitle}{\write\@auxout{\string\@writefile{frm}{\string\frametitleentry{\the\c@framenumber}{#1}{#2}}}}{}{}
+\newcommand*{\frametitleentry}[3]{\@namedef{frametitleshort#1}{#2}\@namedef{frametitle#1}{#3}}
+\AtEndDocument{\if@filesw\newwrite\tf@frm\immediate\openout\tf@frm\jobname.frm\relax\fi}
+\@input{\jobname.frm}
+\newcommand*{\insertpreviousframetitle}[1][1]{\bgroup\advance\c@framenumber by -#1\relax\@ifstar{\@nameuse{frametitleshort\the\c@framenumber}\egroup}{\@nameuse{frametitle\the\c@framenumber}\egroup}}
+\newcommand*{\insertnextframetitle}[1][1]{\bgroup\advance\c@framenumber by #1\relax\@ifstar{\@nameuse{frametitleshort\the\c@framenumber}\egroup}{\@nameuse{frametitle\the\c@framenumber}\egroup}}
+
+\newcommand{\xexample}[1]{\textcolor[rgb]{0.5, 0, 1}{#1}}
+\newcommand{\xalert}[1]{\textcolor[rgb]{1 0.5 0}{#1}}
+\newcommand{\xterm}[1]{\textcolor{blue}{#1}}
+\newcommand{\xquestion}[1]{\textcolor[rgb]{1, 0.25002, 0}{#1}}
+\newcommand{\xsolution}[1]{\textcolor[rgb]{0.50018, 0, 1}{#1}}
+\makeatother
+
+
+
+\graphicspath{{Figs/}{figs/}}
+
+\title[Pore Formation Energy]{Comparative Study of Pore Formation Energy by High Intensity, Nanosecond Electrical Pulse}
+\author[X. Wang]{H. Qiu \inst{1} \and X. Wang \inst{2} \and A. Choi \inst{3} \and W. Zhao\inst{4} }
+\institute[SEMO]{\inst{1}Dept of Engineering Technology, Fort Valley State University \and %
+	\inst{2}Dept of Computer Sciences, Southeast Missouri State University \and %
+	\inst{3}Dept of Electrical \& Computer Engineering, Mercer University \and %
+				     \inst{4}Dept of Electrical Engineering \& Computer Science }
+\date[EMBC 2018]{40th International Conference of the IEEE Engineering in Medicine and Biology Society}
+
+\begin{document}
+
+\begin{frame}
+\maketitle
+%\begin{textblock*}{.32\textwidth}(0.7cm,1.5cm) % {block width} (coords)
+%\includegraphics[width=0.6\textwidth]{elogo.jpg}
+%\end{textblock*}
+%\begin{textblock*}{.3\textwidth}(0.80\textwidth,1.5cm) % {block width} (coords)
+%\includegraphics[width=0.6\textwidth]{ilogo.jpg}
+%\end{textblock*}
+\end{frame}
+
+%\addtobeamertemplate{frametitle}{}{%
+%%\begin{textblock*}{100mm}(0.96\textwidth,0cm)
+%%\includegraphics[height=1cm,width=1.38cm]{logo}
+%%\end{textblock*}}
+%\begin{tikzpicture}[remember picture,overlay, every node/.style={anchor=north east}]
+%\node at (page cs:1,1) {\includegraphics[height=1cm,width=1.38cm]{logo}};
+%\end{tikzpicture}
+%}
+
+\addtobeamertemplate{background canvas}{}{
+\begin{tikzpicture}[remember picture,overlay, every node/.style={anchor=north east}]
+\node[opacity=0.3] at (page cs:1,1) {\includegraphics[height=1cm,width=1.38cm]{logo}};
+\end{tikzpicture}
+}
+
+
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertsection
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertnextframetitle\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Background}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{What is Electroporation?}
+	Electroporation is a biophysical process which enhances permeability of cell membranes by exerting an external electric field. It
+	\begin{itemize}
+		\item uses high-intensity, short-duration electrical pulses
+		\item creates pores in the lipid bilayer leading to rapid increase of electrical conductivity
+		\item promotes electrically-triggered intra-cellular calcium release
+		\item penetrates into mitochondria, damages DNA and micro-organisms, etc.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Electroporation Illustration}
+\includegraphics[width=\textwidth]{Electroporation.jpg}
+\footnote{Image from https://www.creative-biolabs.com/car-t/electroporation.htm}
+\end{frame}
+
+\begin{frame}{Application of Electroporation}
+Electroporation can be applied to
+\begin{itemize}
+	\item 除掉坏死心肌
+	\item $ \int_{下限}^{上限} 力(r)dr $
+	\item 助愈
+\end{itemize}
+%\begin{tikzpicture}[remember picture,overlay, every node/.style={anchor=north east}]
+%\node at (page cs:0.8,-0.1) {\includegraphics[height=0.4\textheight]{f1.png}};
+%\end{tikzpicture}
+\end{frame}
+
+
+\section{Build the Model}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}{Model Evolution}
+\begin{itemize}
+	\item Early continuum models utilize the Smoluchowski theory for time-dependent evolutions using the pore formation energy
+	\item Later improvements to the continuum model include
+	\begin{itemize}
+		\item the role of variable surface tension
+		\item Born energy corrections
+		\item current flow through the generated pores
+		\item electric field contributions to the pore formation energy
+		\item Maxwell stress
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Pore Shape in the Model}
+In recent research, it shows that pore shapes, cylindrical and toroidal, also affect electroporation.
+In this paper, using numerical method, we
+\begin{itemize}
+	\item compare cylindrical and toroidal pores based on continuum theory
+	\item explore the role of membrane curvature in electroporation
+\end{itemize} 
+\end{frame}
+
+\begin{frame}{Build the Model}
+\begin{itemize}
+	\item The Maxwell stress, on the cell membrane altering the pore-radius dependent energy, can be calculated based 	on the surrounding electric field distribution
+	\item The total pore formation energy $ E_{pore}(r) $ can be expressed as: 
+	
+	\scalebox{0.9}{%
+	$ 
+	E_{pore}(r) = \begin{cases}
+	2\pi \gamma r - \pi r^2 \Gamma - \frac{\pi}{2h}(\epsilon_w - \epsilon_m)V_m^2 r^2 + E_{strain}(r) &  r>r_{hh}\\
+	2\pi hr\Gamma_h \frac{I_1(\frac{r}{\lambda})}{I_0(\frac{r}{\lambda})}- \pi r^2 \Gamma - \frac{\pi}{2h}(\epsilon_w - \epsilon_m)V_m^2 r^2 + E_{strain}(r) & r\le r_{hh}
+	\end{cases}
+	$
+	}
+
+	\item  The membrane curvature plays a role in the strain energy:
+	\[ 
+	E_{strain}(r) = -\int_{0}^{r} F(r)\cos(\alpha)dr
+	\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Continuum Model and its Parameters}
+\begin{tikzpicture}[remember picture,overlay, every node/.style={anchor=center}]
+\node at (page cs:-0.6,0) {\includegraphics[height=0.45\textheight]{f1.png}};
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture,overlay, every node/.style={anchor=center}]
+\node at (page cs:0.4,0) {\includegraphics[height=0.4\textheight]{t1.png}};
+\end{tikzpicture}
+%\includegraphics[width=0.45\textwidth]{f1.png}
+%\includegraphics[width=0.45\textwidth]{t1.png}
+\end{frame}
+
+
+
+\section{Simulation Results and Discussion}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}{Surface Electric Potential Distribution of a Toroidal Pore}
+The transmembrane potential is always kept fixed as a constant value:
+	\begin{itemize}
+		\item 1 volt for critical electroporation
+		\item 0.3 volt for early stage of complete pore formation
+	\end{itemize}
+	
+	\vspace{0.5cm}
+	\begin{columns}
+		\begin{column}{0.45\textwidth}
+			\includegraphics[height=0.45\textheight]{f2.png}
+		\end{column}
+	\begin{column}{0.45\textwidth}
+		The electric potential on the pore surface is distributed uniformly. The voltage difference
+		of the top surface and the bottom surface is on average around 1 volt, which is often considered as a critical value of pore formation.
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{The Stress Force on the Surface of Pores}
+The force on the surface of pores is increasing as the pore size gets larger.
+\vspace{0.5cm}
+	\begin{columns}
+		\begin{column}{0.4\textwidth}
+			\includegraphics[height=0.45\textheight]{f3.png}
+		\end{column}
+	\hspace{-1.5cm}
+		\begin{column}{0.6\textwidth}
+			\begin{itemize}
+				\item The force is within the limit of 2 nN for a toroidal pore and 1 nN for a cylindrical pore
+				\item A toroidal pore produces stronger force than a cylindrical pore at varied pore sizes
+				\item The increment of the force of a toroidal pore is slightly faster than a cylindrical pore
+			\end{itemize}
+		\end{column}	
+	\end{columns}
+\end{frame}
+
+\begin{frame}{ $ E_{strain}  $ of pores}
+The magnitude of formation energy of pores is increasing as the pore size gets larger.
+\vspace{0.5cm}
+\begin{columns}
+	\begin{column}{0.4\textwidth}
+		\includegraphics[height=0.45\textheight]{f4.png}
+	\end{column}
+	\hspace{-1.5cm}
+	\begin{column}{0.6\textwidth}
+		\begin{itemize}
+			\item The pore energy is within the limit of $ 400 kT $ (unit $ kT , k$: Boltzmann constant, $ T=300K $) for a toroidal pore and the limit of $ 330 kT $ for a cylindrical pore
+			\item A toroidal pore has more energy than a cylindrical pore at all different pore sizes
+			\item The energy of a toroidal pore increases more rapidly than a cylindrical pore
+		\end{itemize}
+	\end{column}	
+\end{columns}
+\end{frame}
+
+\begin{frame}{Force \& Energy of the Pores}
+\centering
+\includegraphics[width=0.8\textwidth]{t2.png}
+\end{frame}
+
+
+\begin{frame}{}
+	\vspace{1cm}
+	\centering {\Huge \textbf{\color[rgb]{0.0, 0.72, 0.92}{Thank you for your time!}}}
+	\begin{figure}[htbp]
+	\centering
+	\includegraphics[height=0.4\textheight]{question}
+	\end{figure}
+	%\centering {\Huge \textbf{\color[rgb]{0.0, 0.72, 0.92}{Thank the search committee for giving me this valuable chance!}}}
+\end{frame}
+
+
+\end{document}
