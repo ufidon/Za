@@ -47,5 +47,15 @@ pdfjam 待去链档.pdf
 find . -iname "*.pdf" -exec convert -input {} -output {}.jpg \;
 或者
 for file in *.pdf; do convert -input "$file" -output "${file/%pdf/jpg}"; done
+
 ```
+
+## Cisco Anyconnect在ubuntu 18.04上的替换方案
+```bash
+  # 安装openconnect，兼容anyconnect
+  sudo apt-get install network-manager-openconnect-gnome
+  # 测试vpn链接
+  sudo openconnect 私有局域网服务器
+```
+重启电脑，用GUI设置私有局域网链接
 
