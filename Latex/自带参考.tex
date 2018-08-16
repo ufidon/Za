@@ -1,0 +1,138 @@
+\documentclass[UTF8]{beamer}
+%\xeCJKsetup{CJKmath=true}
+%\setCJKmainfont{NotoSerifCJKsc-SemiBold} % CJK font
+\usetheme{Madrid}
+\usecolortheme{lily}
+
+\usepackage{default}
+\usepackage{graphicx, color,tikz}
+
+\usepackage{amsmath,amsfonts,amssymb, amsthm}
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{multicol}
+
+\usepackage{pgfplots,pgfplotstable}
+
+\usepackage{verbatim}
+\usepackage{booktabs,pdfpages}
+
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{etoolbox}
+
+% Defining a new coordinate system for the page:
+%
+% --------------------------
+% |(-1,1)    (0,1)    (1,1)|
+% |                        |
+% |(-1,0)    (0,0)    (1,0)|
+% |                        |
+% |(-1,-1)   (0,-1)  (1,-1)|
+% --------------------------
+\makeatletter
+\def\parsecomma#1,#2\endparsecomma{\def\page@x{#1}\def\page@y{#2}}
+\tikzdeclarecoordinatesystem{page}{
+	\parsecomma#1\endparsecomma
+	\pgfpointanchor{current page}{north east}
+	% Save the upper right corner
+	\pgf@xc=\pgf@x%
+	\pgf@yc=\pgf@y%
+	% save the lower left corner
+	\pgfpointanchor{current page}{south west}
+	\pgf@xb=\pgf@x%
+	\pgf@yb=\pgf@y%
+	% Transform to the correct placement
+	\pgfmathparse{(\pgf@xc-\pgf@xb)/2.*\page@x+(\pgf@xc+\pgf@xb)/2.}
+	\expandafter\pgf@x\expandafter=\pgfmathresult pt
+	\pgfmathparse{(\pgf@yc-\pgf@yb)/2.*\page@y+(\pgf@yc+\pgf@yb)/2.}
+	\expandafter\pgf@y\expandafter=\pgfmathresult pt
+}
+\makeatother
+
+\makeatletter
+\apptocmd{\beamer@@frametitle}{\write\@auxout{\string\@writefile{frm}{\string\frametitleentry{\the\c@framenumber}{#1}{#2}}}}{}{}
+\newcommand*{\frametitleentry}[3]{\@namedef{frametitleshort#1}{#2}\@namedef{frametitle#1}{#3}}
+\AtEndDocument{\if@filesw\newwrite\tf@frm\immediate\openout\tf@frm\jobname.frm\relax\fi}
+\@input{\jobname.frm}
+\newcommand*{\insertpreviousframetitle}[1][1]{\bgroup\advance\c@framenumber by -#1\relax\@ifstar{\@nameuse{frametitleshort\the\c@framenumber}\egroup}{\@nameuse{frametitle\the\c@framenumber}\egroup}}
+\newcommand*{\insertnextframetitle}[1][1]{\bgroup\advance\c@framenumber by #1\relax\@ifstar{\@nameuse{frametitleshort\the\c@framenumber}\egroup}{\@nameuse{frametitle\the\c@framenumber}\egroup}}
+
+\newcommand{\xexample}[1]{\textcolor[rgb]{0.5, 0, 1}{#1}}
+\newcommand{\xalert}[1]{\textcolor[rgb]{1 0.5 0}{#1}}
+\newcommand{\xterm}[1]{\textcolor{blue}{#1}}
+\newcommand{\xquestion}[1]{\textcolor[rgb]{1, 0.25002, 0}{#1}}
+\newcommand{\xsolution}[1]{\textcolor[rgb]{0.50018, 0, 1}{#1}}
+\makeatother
+
+
+\graphicspath{{Figs/}{figs/}}
+
+\title[ITS13500]{Operating System Technologies}
+\author[X. Wang]{Xianping  Wang \inst{1}}
+\institute[PNW]{\inst{1}Dept of Computer Information Technology and Graphics\\ Purdue University Northwest\\ Westville }
+\date[Fall 2018]{Fall 2018}
+
+\begin{document}
+
+\begin{frame}
+\maketitle
+%\begin{textblock*}{.32\textwidth}(0.7cm,1.5cm) % {block width} (coords)
+%\includegraphics[width=0.6\textwidth]{elogo.jpg}
+%\end{textblock*}
+%\begin{textblock*}{.3\textwidth}(0.80\textwidth,1.5cm) % {block width} (coords)
+%\includegraphics[width=0.6\textwidth]{ilogo.jpg}
+%\end{textblock*}
+\end{frame}
+
+%\addtobeamertemplate{frametitle}{}{%
+%%\begin{textblock*}{100mm}(0.96\textwidth,0cm)
+%%\includegraphics[height=1cm,width=1.38cm]{logo}
+%%\end{textblock*}}
+%\begin{tikzpicture}[remember picture,overlay, every node/.style={anchor=north east}]
+%\node at (page cs:1,1) {\includegraphics[height=1cm,width=1.38cm]{logo}};
+%\end{tikzpicture}
+%}
+
+\addtobeamertemplate{background canvas}{}{
+\begin{tikzpicture}[remember picture,overlay, every node/.style={anchor=north east}]
+\node[opacity=0.3] at (page cs:1,1) {\includegraphics[height=1cm,width=1.38cm]{logo}};
+\end{tikzpicture}
+}
+
+
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertsection
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertnextframetitle\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Class Information}
+\frame{\tableofcontents[currentsection]}
+
+	\begin{frame}
+	Begins here
+	\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+\frametitle{References}
+\begin{thebibliography}{9}
+\bibitem{wblink}Microsoft Windows 2012 R2: \url{https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2012-r2}
+\end{thebibliography}
+\end{frame}
+
+
+\end{document}
