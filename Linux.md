@@ -59,3 +59,6 @@ for file in *.pdf; do convert -input "$file" -output "${file/%pdf/jpg}"; done
 ```
 重启电脑，用GUI设置私有局域网链接
 
+## VirtualBox 驱动安装失败
+* [vboxdrv.sh: failed: modprobe vboxdrv failed](https://askubuntu.com/questions/900118/vboxdrv-sh-failed-modprobe-vboxdrv-failed-please-use-dmesg-to-find-out-why)
+
