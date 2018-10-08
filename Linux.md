@@ -41,6 +41,9 @@ pdfjam 待去链档.pdf
 2. sudo fc-cache -f -v
 ```
 
+## 像影伸缩
+* [用ffmpeg伸缩影像](https://trac.ffmpeg.org/wiki/Scaling)
+
 ## 对多个对象做同样处理
 * [Bash参考手册](http://www.gnu.org/software/bash/manual/bashref.html)
 ```bash
