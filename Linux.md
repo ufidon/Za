@@ -93,8 +93,8 @@ dmesg|grep 'EFI: Loaded cert'
 for modfile in $(dirname $(modinfo -n vboxdrv))/*.ko; do
   echo "Signing $modfile"
   /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 \
-                                /root/module-signing/MOK.priv \
-                                /root/module-signing/MOK.der "$modfile"
+                                /root/module-signing/mok.priv \
+                                /root/module-signing/mok.der "$modfile"
 done
 
 ```
