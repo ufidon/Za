@@ -109,4 +109,15 @@ done
 ```
 此过程也可用于对其它第三方内核模块签名，如显卡驱动
 
+## VirtualBox 共享库错误1
+```bash
+OSError: /usr/lib/x86_64-linux-gnu/VBoxOGLcrutil.so: undefined symbol: crypt_r
+```
+修正
+```bash
+sudo apt install patchelf
+sudo patchelf --add-needed libcrypt.so.1 /opt/VBoxGuestAdditions-6.0.8/lib/VBoxOGLcrutil.so
+```
+* [参考](https://www.virtualbox.org/ticket/18324)
+
 
