@@ -54,3 +54,31 @@ plt.rcParams['axes.unicode_minus'] = False
 * [参考1](https://medium.com/marketingdatascience/%E8%A7%A3%E6%B1%BApython-3-matplotlib%E8%88%87seaborn%E8%A6%96%E8%A6%BA%E5%8C%96%E5%A5%97%E4%BB%B6%E4%B8%AD%E6%96%87%E9%A1%AF%E7%A4%BA%E5%95%8F%E9%A1%8C-f7b3773a889b)
 * [参考2](https://www.zhihu.com/question/55035983)
 
+## ipython中的数学公式显示
+
+1. sympy
+```python
+from sympy import init_printing
+init_printing() # doctest: +SKIP
+# 或
+from sympy import init_session
+init_session() # doctest: +SKIP
+
+```
+* [参考](https://docs.sympy.org/latest/tutorial/printing.html)
+
+2. sagemath
+```python
+%display latex
+f=x^2+3*x+1
+# 或
+pretty_print(f) # 或
+show(f)
+```
+* [参考](https://github.com/nteract/nteract/issues/3364)
+
+3. jupyter notebook/lab
+```python
+%pprint
+```
+* [参考](https://ipython.readthedocs.io/en/stable/interactive/magics.html?highlight=pprint)
