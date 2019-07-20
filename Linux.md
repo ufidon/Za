@@ -120,4 +120,49 @@ sudo patchelf --add-needed libcrypt.so.1 /opt/VBoxGuestAdditions-6.0.8/lib/VBoxO
 ```
 * [参考](https://www.virtualbox.org/ticket/18324)
 
+## ssh 访问github
+0. https 访问 github, 提供用户名和密码
+```bash
+git clone https://github.com/usernameatgithub/repo.git
+# ex.
+git clone https://github.com/ufidon/Za.git
+```
+
+1. 访问
+```bash
+git clone git@github.com:usernameatgithub/repo.git
+# ex.
+git clone git@github.com:ufidon/Za.git
+```
+2. 设置
+ 2.1 检查是否有可用的ssh钥匙
+ ```bash
+ ls -al ~/.ssh
+ ```
+ 2.2 若没有则制作
+ ```bash
+ ssh-keygen -t rsa -b 4096 -C "your email"
+ # 保存生成的钥匙于默认位置
+ ```
+ 2.3 把ssh钥匙放入ssh-agent
+ ```bash
+ eval "$(ssh-agent -s)"
+ ssh-add ~/.ssh/id_rsa
+ ```
+ 2.4 从私钥制作公钥, 再登录github.com添加此公钥
+ ```bash
+ openssl rsa -in 私钥 -pubout > 公钥
+ # 或者
+ openssl rsa -in 私钥 -pubout -out 公钥
+ ```
+ 2.5 测试ssh至github
+ ```bash
+ ssh -vT git@github.com
+ # ssh -vT usernameatgithub@github.com
+ ```
+
+* [参考1](https://help.github.com/en/articles/about-ssh)
+* [参考2](https://help.github.com/en/articles/troubleshooting-ssh)
+
+
 
