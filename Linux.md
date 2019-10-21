@@ -128,6 +128,54 @@ git clone https://github.com/usernameatgithub/repo.git
 git clone https://github.com/ufidon/Za.git
 ```
 
+## 多个SSH密钥访问不同Github 及 Gitlab账号
+
+1. 为不同账号生成不同密钥
+```bash
+    ssh-keygen -t rsa -b 4096 -C "账号1 email" -f 账号1.私钥
+    ssh-keygen -t rsa -b 4096 -C "账号2 email" -f 账号2.私钥
+```
+2. 为不同账号配置公钥
+    ```bash
+    cd ~/.ssh/
+    vim config
+    ```
+
+    config内容:
+    ```bash
+    \# Github账号
+    Host account1.github.com
+    	HostName github.com
+        PreferredAuthentications publickey
+        IdentityFile ~/.ssh/账号1.私钥
+    
+    \# Gitlab账号
+    Host account2.github.com
+    	HostName github.com
+        PreferredAuthentications publickey
+        IdentityFile ~/.ssh/账号2.私钥
+    ```
+
+3. 添加身份
+    ```bash
+    0. 运行认证代理
+    eval `ssh-agent -s`
+    1. 删除缓存钥匙
+	ssh-add -D
+    2. 添加私钥
+    ssh-add ~/.ssh/账号1.私钥
+    ssh-add ~/.ssh/账号2.私钥
+    ```
+
+4. 测试
+    ```bash
+    ssh -T git@github.com
+    ssh -T git@gitlab.com
+    ```
+
+
+[参考](https://coderwall.com/p/7smjkq/multiple-ssh-keys-for-different-accounts-on-github-or-gitlab)
+
 1. 访问
 ```bash
 git clone git@github.com:usernameatgithub/repo.git
