@@ -95,13 +95,27 @@ ffmpeg -ss 00:00:00 -t 00:50:00 -i largefile.mp4 -acodec copy
 # 切一为二
 ffmpeg -i largefile.mp4 -t 00:50:00 -c copy smallfile1.mp4 -ss 00:50:00 -c copy smallfile2.mp4
 
+# 切分后合并
+ffmpeg -i video1.mp4 -i video2.mp4 -filter_complex "\
+[0:v]trim=0:10,setpts=PTS-STARTPTS[v0]; \
+[1:v]trim=0:5,setpts=PTS-STARTPTS[v1]; \
+[0:v]trim=15:30,setpts=PTS-STARTPTS[v2]; \
+[v0][v1][v2]concat=n=3:v=1:a=0[out]" \
+-map "[out]" output.mp4
 
 ```
 
 * [FFMPEG Splitting MP4 with Same Quality](https://superuser.com/questions/140899/ffmpeg-splitting-mp4-with-same-quality)
 * [FFmpeg: How to split video efficiently?](https://stackoverflow.com/questions/5651654/ffmpeg-how-to-split-video-efficiently)
-* [ffmpeg not creating exact duration clip
-](https://video.stackexchange.com/questions/23373/ffmpeg-not-creating-exact-duration-clip)
+* [ffmpeg not creating exact duration clip](https://video.stackexchange.com/questions/23373/ffmpeg-not-creating-exact-duration-clip)
+[FFmpeg split video and merge back](https://superuser.com/questions/1229945/ffmpeg-split-video-and-merge-back)
+
+## 对多个对象做同样处理
+* [Bash参考手册](http://www.gnu.org/software/bash/manual/bashref.html)
+```bash
+find . -iname "*.pdf" -exec convert -input {} -output {}.jpg \;
+或者
+for file in *.pdf; do convert -input "$file" -output "${file/%pdf/jpg}"; done
 
 ## Cisco Anyconnect在ubuntu 18.04上的替换方案
 ```bash
