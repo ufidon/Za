@@ -44,6 +44,31 @@ pdfjam 待去链档.pdf
 ## 像影伸缩
 * [用ffmpeg伸缩影像](https://trac.ffmpeg.org/wiki/Scaling)
 
+```bash
+# 1. 更改视频分辨率至320x240
+ffmpeg -i input.avi -vf scale=320:240 output.avi
+
+# 2. 更改图片分辨率至320x240
+ffmpeg -i input.jpg -vf scale=320:240 output_320x240.png
+
+# 3. 更改长至320， 高度自调
+ffmpeg -i input.jpg -vf scale=320:-1 output_320.png
+
+# 4. 采用入者属性变量(iw-入者宽， ih-入者高)
+ffmpeg -i input.jpg -vf scale=iw*2:ih input_double_width.png
+ffmpeg -i input.jpg -vf "scale=iw*.5:ih*.5" input_half_size.png
+ffmpeg -i input.jpg -vf "scale=iw/2:ih/2" input_half_size.png
+
+# 5. 强制变形
+ffmpeg -i input.jpg -vf scale=w=320:h=240:force_original_aspect_ratio=decrease output_320.png
+
+ffmpeg -i input.jpg -vf "scale=320:240:force_original_aspect_ratio=decrease,pad=320:240:(ow-iw)/2:(oh-ih)/2" output_320_padding.png
+
+# 6. 指定变形算法
+ffmpeg -i test.tif -vf scale=504:376 -sws_flags bilinear out.bmp
+
+````
+
 ## 对多个对象做同样处理
 * [Bash参考手册](http://www.gnu.org/software/bash/manual/bashref.html)
 ```bash
@@ -52,6 +77,31 @@ find . -iname "*.pdf" -exec convert -input {} -output {}.jpg \;
 for file in *.pdf; do convert -input "$file" -output "${file/%pdf/jpg}"; done
 
 ```
+## 视频切分
+```bash
+# 1. 准确切分
+ffmpeg -i source.mp4 -ss 0:14:42.000 -codec copy -t 0:00:02.000 -y output.mp4
+
+# 2. 复制切分
+# 两步切一为二 
+time ffmpeg -v quiet -y -i input.ts -vcodec copy -acodec copy -ss 00:00:00 -t 00:30:00 -sn test1.mkv
+time ffmpeg -v quiet -y -i input.ts -vcodec copy -acodec copy -ss 00:30:00 -t 01:00:00 -sn test2.mkv
+
+# 单步切一为二 
+time ffmpeg -v quiet -y -i input.ts -vcodec copy -acodec copy -ss 00:00:00 -t 00:30:00   -sn test3.mkv -vcodec copy -acodec copy -ss 00:30:00 -t 01:00:00 -sn test4.mkv
+# 割取
+ffmpeg -ss 00:00:00 -t 00:50:00 -i largefile.mp4 -acodec copy 
+-vcodec copy smallfile.mp4
+# 切一为二
+ffmpeg -i largefile.mp4 -t 00:50:00 -c copy smallfile1.mp4 -ss 00:50:00 -c copy smallfile2.mp4
+
+
+```
+
+* [FFMPEG Splitting MP4 with Same Quality](https://superuser.com/questions/140899/ffmpeg-splitting-mp4-with-same-quality)
+* [FFmpeg: How to split video efficiently?](https://stackoverflow.com/questions/5651654/ffmpeg-how-to-split-video-efficiently)
+* [ffmpeg not creating exact duration clip
+](https://video.stackexchange.com/questions/23373/ffmpeg-not-creating-exact-duration-clip)
 
 ## Cisco Anyconnect在ubuntu 18.04上的替换方案
 ```bash
