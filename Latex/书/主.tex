@@ -1,0 +1,46 @@
+\documentclass[11pt,oneside]{ctexbook}
+\usepackage{fontspec}
+\setmainfont{Noto Serif CJK SC}
+
+% 改自 https://www.overleaf.com/ 模板
+\title{多源文件 \LaTeX 项目 }
+
+\usepackage[a4paper]{geometry}
+
+\usepackage[sectionbib]{natbib}
+\usepackage{chapterbib}
+%%% 修改参考书目 标题
+% \renewcommand{\bibname}{参考书目}
+
+%%% 将各章参考书目放入目录.  
+% \usepackage[nottoc]{tocbibind}
+
+\begin{document}
+\frontmatter
+
+\chapter*{总概}
+
+在每章末尾放置参考书目方便快速查找. 需要\texttt{chapterbib} 包与 BibTeX. (不要用 BibLaTeX!).
+
+每章须有自己单独的\texttt{.tex} 源文件且包之于主\texttt{.tex} 源文件.
+
+编译:
+\begin{verbatim}
+    xelatex 主文件
+    bibtex 各章文件
+    xelatex 主文件
+    xelatex 主文件
+\end{verbatim}
+
+\tableofcontents
+
+\mainmatter
+\include{章1}
+\include{章2}
+
+\backmatter
+%% 发表文章列表
+\include{己文列}
+
+\end{document}
+
