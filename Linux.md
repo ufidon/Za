@@ -29,6 +29,29 @@ qpdf --password=YOURPASSWORD-HERE --decrypt input.pdf output.pdf
 gs -o 输出.pdf -sDEVICE=pdfwrite -dEmbedAllFonts=true 待嵌字体档.pdf
 ```
 
+## 更新pdf书签
+
+两个书签示例:
+
+BookmarkBegin
+BookmarkTitle: PDF Reference (Version 1.5)
+BookmarkLevel: 1
+BookmarkPageNumber: 1
+BookmarkBegin
+BookmarkTitle: Contents
+BookmarkLevel: 2
+BookmarkPageNumber: 3
+
+```bash
+# 1. 导出书签:
+pdftk doc.pdf dump_data output doc_data.txt
+
+# 2. 导入书签:
+pdftk doc.pdf update_info doc_data.txt output updated.pdf
+```
+* [How to Export and Import PDF Bookmarks](https://www.pdflabs.com/blog/export-and-import-pdf-bookmarks/)
+* [How to Create Photo Albums for Nook or Kindle](https://www.pdflabs.com/blog/enjoy-photos-on-nook-or-kindle-using-pdf-albums/)
+
 ## 去除pdf内链接
 ```bash
 pdfjam 待去链档.pdf
