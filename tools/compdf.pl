@@ -44,7 +44,7 @@ for my $fp (@rfp)
     push(@pdffiles, $fp);
 
     # 构建书签
-    $tmpstr = `pdftk $fp dump_data | grep -i NumberOfPages`;
+    $tmpstr = `pdftk '$fp' dump_data | grep -i NumberOfPages`;
     $pages = int((split(/:/,$tmpstr))[1]);
 
     $fname = substr($fp, 0, -4);
@@ -59,7 +59,8 @@ print($bks);
 print $out $bks;
 close($out);
 
-my $pdffilesstr = join(" ", @pdffiles);
+my @pdffilesquoted = map { "'" . $_ ."'" } @pdffiles;
+my $pdffilesstr = join(" ", @pdffilesquoted);
 my $rescon = `pdftk $pdffilesstr cat output tmp.pdf`;
 
 # 更新书签
