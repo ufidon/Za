@@ -64,4 +64,4 @@ my $pdffilesstr = join(" ", @pdffilesquoted);
 my $rescon = `pdftk $pdffilesstr cat output tmp.pdf`;
 
 # 更新书签
-$rescon = `pdftk tmp.pdf update_info data.txt output $respdf`;
+$rescon = `pdftk tmp.pdf update_info data.txt output "$respdf"`;
