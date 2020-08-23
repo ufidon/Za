@@ -133,6 +133,16 @@ ffmpeg -i video1.mp4 -i video2.mp4 -filter_complex "\
 * [ffmpeg not creating exact duration clip](https://video.stackexchange.com/questions/23373/ffmpeg-not-creating-exact-duration-clip)
 [FFmpeg split video and merge back](https://superuser.com/questions/1229945/ffmpeg-split-video-and-merge-back)
 
+## 视频加水印
+```bash
+ffmpeg -i input.mp4 -i watermark.png -filter_complex "[1]lut=a=val*0.1[a];[0][a]overlay=x=(main_w-overlay_w)/2:y=(main_h-overlay_h)/2" output.mp4
+```
+
+* [How to Add a Watermark to Video](https://gist.github.com/bennylope/d5d6029fb63648582fed2367ae23cfd6)
+* [Watermarking Videos from the Command Line with FFMPEG Filters](http://ksloan.net/watermarking-videos-from-the-command-line-using-ffmpeg-filters/)
+* [ffmpeg add semi transparent watermark(png) with different size
+](https://stackoverflow.com/questions/39591675/ffmpeg-add-semi-transparent-watermarkpng-with-different-size)
+
 ## 对多个对象做同样处理
 * [Bash参考手册](http://www.gnu.org/software/bash/manual/bashref.html)
 ```bash
