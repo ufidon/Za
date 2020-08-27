@@ -126,12 +126,28 @@ ffmpeg -i video1.mp4 -i video2.mp4 -filter_complex "\
 [v0][v1][v2]concat=n=3:v=1:a=0[out]" \
 -map "[out]" output.mp4
 
+## 去除部分视频
+# 1. Create segments:
+
+ffmpeg  -t 00:11:00 -i input.mp4 -map 0 -c copy segment1.mp4
+ffmpeg -ss 00:11:10 -i input.mp4 -map 0 -c copy segment2.mp4
+
+# 2. Create input.txt:
+
+file 'segment1.mp4'
+file 'segment2.mp4'
+
+# 3. Concatenate with the concat demuxer:
+
+ffmpeg -f concat -i input.txt -map 0 -c copy output.mp4
+
 ```
 
 * [FFMPEG Splitting MP4 with Same Quality](https://superuser.com/questions/140899/ffmpeg-splitting-mp4-with-same-quality)
 * [FFmpeg: How to split video efficiently?](https://stackoverflow.com/questions/5651654/ffmpeg-how-to-split-video-efficiently)
 * [ffmpeg not creating exact duration clip](https://video.stackexchange.com/questions/23373/ffmpeg-not-creating-exact-duration-clip)
 [FFmpeg split video and merge back](https://superuser.com/questions/1229945/ffmpeg-split-video-and-merge-back)
+* [How to remove a few seconds from .mp4 file using ffmpeg?](https://askubuntu.com/questions/977162/how-to-remove-a-few-seconds-from-mp4-file-using-ffmpeg)
 
 ## 视频加水印
 ```bash
