@@ -52,6 +52,23 @@ pdftk doc.pdf update_info doc_data.txt output updated.pdf
 * [How to Export and Import PDF Bookmarks](https://www.pdflabs.com/blog/export-and-import-pdf-bookmarks/)
 * [How to Create Photo Albums for Nook or Kindle](https://www.pdflabs.com/blog/enjoy-photos-on-nook-or-kindle-using-pdf-albums/)
 
+
+## pdf转html
+```bash
+# 1. 极简
+pdf2htmlEX --zoom 1.3 pdf/test.pdf
+# 2. 高级
+pdf2htmlEX -f 3 -l 5 --fit-width 1024 --bg-format jpg pdf/test.pdf
+# 3. 简单出版
+pdf2htmlEX --embed cfijo --dest-dir out pdf/test.pdf
+# 4. 高级出版
+pdf2htmlEX --embed cfijo --split-pages 1 --dest-dir out --page-filename test-%d.page pdf/test.pdf
+# 5. 最后一手
+pdf2htmlEX --fallback 1 pdf/test.pdf
+```
+* [pdf2htmlEX quick start](https://github.com/pdf2htmlEX/pdf2htmlEX/wiki/Quick-Start)
+* [pdf2htmlEX](https://github.com/pdf2htmlEX/pdf2htmlEX)
+
 ## 去除pdf内链接
 ```bash
 pdfjam 待去链档.pdf
@@ -158,6 +175,16 @@ ffmpeg -i input.mp4 -i watermark.png -filter_complex "[1]lut=a=val*0.1[a];[0][a]
 * [Watermarking Videos from the Command Line with FFMPEG Filters](http://ksloan.net/watermarking-videos-from-the-command-line-using-ffmpeg-filters/)
 * [ffmpeg add semi transparent watermark(png) with different size
 ](https://stackoverflow.com/questions/39591675/ffmpeg-add-semi-transparent-watermarkpng-with-different-size)
+
+## 视频提取更换音轨
+```bash
+# 1. 取音轨
+ffmpeg -i myvideo.mp4 -vn -acodec copy audio.ogg
+# 2. 换音轨
+ffmpeg -i v.mp4 -i a.wav -c:v copy -map 0:v:0 -map 1:a:0 new.mp4
+```
+* [FFmpeg: Extract Audio From Video In Original Format Or Converting It To MP3 Or Ogg Vorbis](https://www.linuxuprising.com/2019/11/ffmpeg-extract-audio-from-video-in.html)
+* [ffmpeg - replace audio in video](https://superuser.com/questions/1137612/ffmpeg-replace-audio-in-video)
 
 ## 对多个对象做同样处理
 * [Bash参考手册](http://www.gnu.org/software/bash/manual/bashref.html)
