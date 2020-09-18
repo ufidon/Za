@@ -202,6 +202,44 @@ for file in *.pdf; do convert -input "$file" -output "${file/%pdf/jpg}"; done
 ```
 重启电脑，用GUI设置私有局域网链接
 
+## 用系统精灵替换老本地
+```bash
+# 1.系统精灵+程序
+# 1.1 创建一个程序/usr/local/bin/xshare.sh
+# ------------
+#！/usr/bin/bash
+# 挂载主机虚拟机共享文件夹
+mount -t vboxsf -o rw,uid=1000,gid=1000 share /home/f/host
+# echo $(date +%F" "%T) "挂载程序被执行了" >> /var/log/共享.log
+# ------------
+
+# 1.2 创建精灵文件/lib/systemd/user/xshare.service
+# ------------
+[Unit]
+Description= 执行 /usr/local/bin/xshare.sh
+[Service]
+ExecStart=/usr/local/bin/xshare.sh
+[Install]
+WantedBy=multi-user.target
+# ------------
+# 1.3 在/etc/systemd/system目录下创建链接文件至上述精灵文件
+sudo ln -s /lib/systemd/user/xshare.service /etc/systemd/system/xshare.service
+
+# 1.4 激活并启动该精灵
+sudo systemctl status xservice
+sudo systemctl enable xservice
+sudo systemctl start xservice
+
+# 1.5 检验
+sudo journalctl -u xservice
+sudo systemctl status xservice
+
+# 2.激活老本地，不建议再用
+sudo systemctl enable rc-local
+# check the man page for systemd-rc-local-generator
+```
+
+* [Replacing rc.local in systemd Linux systems](https://www.redhat.com/sysadmin/replacing-rclocal-systemd)
 
 ## 定制显示屏分辨率
 ```bash
