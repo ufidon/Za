@@ -119,7 +119,7 @@ for file in *.pdf; do convert -input "$file" -output "${file/%pdf/jpg}"; done
 ```
 ## 视频切分
 ```bash
-# 1. 准确切分
+# 1. 准确切分, -ss 起时，开始时间 -t 时长 -to 至时，截至时间
 ffmpeg -i source.mp4 -ss 0:14:42.000 -codec copy -t 0:00:02.000 -y output.mp4
 
 # 2. 复制切分
@@ -201,6 +201,23 @@ for file in *.pdf; do convert -input "$file" -output "${file/%pdf/jpg}"; done
   sudo openconnect 私有局域网服务器
 ```
 重启电脑，用GUI设置私有局域网链接
+
+
+## 定制显示屏分辨率
+```bash
+# 0. 显示显示器分辨率列表
+xrandr
+# 1. 生成分辨率配置
+cvt 1920 1080
+# 1920x1080 59.96 Hz (CVT 2.07M9) hsync: 67.16 kHz; pclk: 173.00 MHz
+Modeline "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+# 2. 新建分辨率配置
+xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+# DP-1为要加模式的显示器
+xrandr --addmode DP-1 "1920x1080_60.00"
+```
+
+* [](https://www.tecmint.com/set-display-screen-resolution-in-ubuntu/)
 
 ## VirtualBox 驱动安装失败
 * [vboxdrv.sh: failed: modprobe vboxdrv failed](https://askubuntu.com/questions/900118/vboxdrv-sh-failed-modprobe-vboxdrv-failed-please-use-dmesg-to-find-out-why)
