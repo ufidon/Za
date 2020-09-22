@@ -182,9 +182,13 @@ ffmpeg -i input.mp4 -i watermark.png -filter_complex "[1]lut=a=val*0.1[a];[0][a]
 ffmpeg -i myvideo.mp4 -vn -acodec copy audio.ogg
 # 2. 换音轨
 ffmpeg -i v.mp4 -i a.wav -c:v copy -map 0:v:0 -map 1:a:0 new.mp4
+# 3. 反复播放音乐至视频结束
+ffmpeg -i inputVideoFilePath -filter_complex "amovie=inputAudioFilePath:loop=0,asetpts=N/SR/TB[aud];[0:a][aud]amix[a]" -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 256k -shortest outputVideoFilePath
 ```
 * [FFmpeg: Extract Audio From Video In Original Format Or Converting It To MP3 Or Ogg Vorbis](https://www.linuxuprising.com/2019/11/ffmpeg-extract-audio-from-video-in.html)
 * [ffmpeg - replace audio in video](https://superuser.com/questions/1137612/ffmpeg-replace-audio-in-video)
+* [FFmpeg Mixing new Audio with video repeat audio until video finishes
+](https://superuser.com/questions/1319945/ffmpeg-mixing-new-audio-with-video-repeat-audio-until-video-finishes)
 
 ## 对多个对象做同样处理
 * [Bash参考手册](http://www.gnu.org/software/bash/manual/bashref.html)
