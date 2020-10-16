@@ -1,21 +1,35 @@
-# ╟Л╧╚хМ╪Ч╪╪гитс╪г
+# Е┼·Е┘╛Х╫╞Д╩╤Ф┼─Е╥╖Ф²┌Х╝╟
 
-## LibreOffice Calc ╦Яж╥
+## LibreOffice Calc Ф═╪Е²─
 
 * [Addresses and References, Absolute and Relative](https://help.libreoffice.org/Calc/Addresses_and_References,_Absolute_and_Relative)
 * [Moving Cells by Drag-and-Drop](https://help.libreoffice.org/Calc/Moving_Cells_by_Drag-and-Drop)
 
 ```bash
-A1:A7, A1:Q1 оЮ╤тя╟ж╥, мо╣╫╠П╦Я©ивт╤╞╠Д╦Э
-$A$1:$A$7, $A$1:$Q$1 ╬Ь╤тя╟ж╥, мо╤╞╡╩╠Д
+A1:A7, A1:Q1 Г⌡╦Е╞╧Е╞╩Е²─, Ф▀√Е┬╟Е┬╚Ф═╪Е▐╞Х┤╙Е┼╗Е▐≤Ф⌡╢
+$A$1:$A$7, $A$1:$Q$1 Г╩²Е╞╧Е╞╩Е²─, Ф▀√Е┼╗Д╦█Е▐≤
 ```
 
-## ппапмо╤╞
+## Х║▄Е┬≈Ф▀√Е┼╗
 
 * [Swap two columns](https://forum.openoffice.org/en/forum/viewtopic.php?f=9&t=61692)
 ```bash
-1. я║тЯр╙мо╤╞ап
-2. вС╪Э╟╢в║я║жпап╦ъаагЬхн╨н╣ь╥╫,йтмойС╠Йж╦уК╠ДЁимо╤╞уК
-3. ╟╢обALT╪Э, мо╤╞, р╩лУ╦ъааапоъотй╬╣╠г╟можан╩жц
-4. жад©╠Йн╩жцкивС╪ЭмЙЁи
+1. И─┴Ф▀╘Х╕│Ф▀√Е┼╗Е┬≈
+2. Е╥╕И■╝Ф▄┴Д╫▐И─┴Д╦╜Е┬≈И╚≤Д╨╝Е▄╨Д╩╩Д╫∙Е°╟Ф√╧,Х╞∙Ф▀√И╪═Ф═┤Ф▄┤И▓┬Е▐≤Ф┬░Ф▀√Е┼╗И▓┬
+3. Ф▄┴Д╦▀ALTИ■╝, Ф▀√Е┼╗, Д╦─Ф²║И╚≤Д╨╝Е┬≈Г╨©Ф≤╬Г╓╨Е╫⌠Е┴█Ф▀√Х┤ЁД╫█Г╫╝
+4. Х┤ЁГ⌡╝Ф═┤Д╫█Г╫╝Ф²╬Е╥╕И■╝Е╝▄Ф┬░
+```
+
+## SDKMAN Г╝║Г░├Г └ JDK Д╦▌ Zotero LibreOfficeФ▐▓Д╩╤
+## pdftk-java Е╝┴Хё┘Е┴█Д╧÷И°─Е╕┌Д╦▀Х╝╬Г╫╝
+
+И°─Е│ Е╕┌Д╦▀Г▌╞Е╒┐Х╝╬Г╫╝
+```bash
+# 1. Е╩╨Д╦─Д╦╙sdk.sh Д╨▌/etc/profile.dЕ├┘О╪▄Е├┘Е╝╧Е╕┌Д╦▀
+export JAVA_HOME=/opt/sdkman/candidates/java/current
+
+# 2. Е╩╨Д╦╓Д╦╙ГЁ╩Г╩÷Х╫╞И⌠╬Ф▌╔
+sudo ln -s "$JAVA_HOME/bin/java" /usr/bin/java
+sudo ln -s "$JAVA_HOME/bin/javac" /usr/bin/javac
+
 ```
