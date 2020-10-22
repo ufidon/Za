@@ -327,6 +327,14 @@ git clone https://github.com/usernameatgithub/repo.git
 git clone https://github.com/ufidon/Za.git
 ```
 
+## git bash
+
+```bash
+exec ssh-agent bash 
+eval ssh-agent -s
+ssh-add ~/.ssh/id_rsa
+```
+
 ## 多个SSH密钥访问不同Github 及 Gitlab账号
 
 1. 为不同账号生成不同密钥
