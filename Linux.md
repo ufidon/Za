@@ -334,6 +334,9 @@ exec ssh-agent bash
 eval ssh-agent -s
 ssh-add ~/.ssh/id_rsa
 ```
+* [Running SSH Agent when starting Git Bash on Windows](https://stackoverflow.com/questions/18404272/running-ssh-agent-when-starting-git-bash-on-windows)
+* [Setup SSH Authentication for Git Bash on Windows](https://gist.github.com/bsara/5c4d90db3016814a3d2fe38d314f9c23)
+* [Automatically starting ssh-agent when powershell or git-bash are started](https://dmtavt.com/post/2020-08-03-ssh-agent-powershell/)
 
 ## 多个SSH密钥访问不同Github 及 Gitlab账号
 
