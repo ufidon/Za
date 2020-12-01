@@ -117,6 +117,17 @@ find . -iname "*.pdf" -exec convert -input {} -output {}.jpg \;
 for file in *.pdf; do convert -input "$file" -output "${file/%pdf/jpg}"; done
 
 ```
+
+## 视频切割
+```bash
+ffmpeg -i in.mp4 -filter:v "crop=out_w:out_h:x:y" out.mp4
+# x:y 切割视频左上角在原视频中的位置
+# out_w:out_h 切割视频长宽
+```
+* [How can I crop a video with ffmpeg?](https://video.stackexchange.com/questions/4563/how-can-i-crop-a-video-with-ffmpeg)
+* [FFmpeg Filters Documentation](https://ffmpeg.org/ffmpeg-filters.html)
+
+
 ## 视频切分
 ```bash
 # 1. 准确切分, -ss 起时，开始时间 -t 时长 -to 至时，截至时间
