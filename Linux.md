@@ -201,6 +201,16 @@ ffmpeg -i inputVideoFilePath -filter_complex "amovie=inputAudioFilePath:loop=0,a
 * [FFmpeg Mixing new Audio with video repeat audio until video finishes
 ](https://superuser.com/questions/1319945/ffmpeg-mixing-new-audio-with-video-repeat-audio-until-video-finishes)
 
+## 录屏
+```bash
+# 1. 软件编码
+ffmpeg -f gdigrab -framerate 30 -i desktop -c:v libx264 output.mkv -f dshow -i audio="Stereo Mix (Realtek Audio)" output.mkv
+# 2. 硬件编码
+ffmpeg -f gdigrab -framerate 30 -i desktop -c:v h264_nvenc  output.mkv -f dshow -i audio="Remote Audio" output.mkv
+```
+* [Screen recording using ffmpeg](https://superuser.com/questions/1580982/screen-recording-using-ffmpeg)
+* [Capturing your Desktop / Screen Recording](https://trac.ffmpeg.org/wiki/Capture/Desktop)
+
 ## 对多个对象做同样处理
 * [Bash参考手册](http://www.gnu.org/software/bash/manual/bashref.html)
 ```bash
