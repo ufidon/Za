@@ -206,7 +206,7 @@ ffmpeg -i inputVideoFilePath -filter_complex "amovie=inputAudioFilePath:loop=0,a
 # 1. 软件编码
 ffmpeg -f gdigrab -framerate 30 -i desktop -c:v libx264 output.mkv -f dshow -i audio="Stereo Mix (Realtek Audio)" output.mkv
 # 2. 硬件编码
-ffmpeg -f gdigrab -framerate 30 -i desktop -c:v h264_nvenc  output.mkv -f dshow -i audio="Remote Audio" output.mkv
+ffmpeg -f gdigrab -framerate 30 -i desktop -c:v h264_nvenc  output.mkv -f dshow -i audio="Remote Audio" 
 ```
 * [Screen recording using ffmpeg](https://superuser.com/questions/1580982/screen-recording-using-ffmpeg)
 * [Capturing your Desktop / Screen Recording](https://trac.ffmpeg.org/wiki/Capture/Desktop)
