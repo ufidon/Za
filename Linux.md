@@ -443,5 +443,8 @@ git clone git@github.com:ufidon/Za.git
 * [参考1](https://help.github.com/en/articles/about-ssh)
 * [参考2](https://help.github.com/en/articles/troubleshooting-ssh)
 
+## Git教程
+* [集锦](https://gist.github.com/jaseemabid/1321592)
+
 
 
