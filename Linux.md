@@ -211,6 +211,24 @@ ffmpeg -f gdigrab -framerate 30 -i desktop -c:v h264_nvenc  output.mkv -f dshow 
 * [Screen recording using ffmpeg](https://superuser.com/questions/1580982/screen-recording-using-ffmpeg)
 * [Capturing your Desktop / Screen Recording](https://trac.ffmpeg.org/wiki/Capture/Desktop)
 
+## 远程录屏丢失
+1. 本地机器注册表更改
+```reg
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Terminal Server Client]
+"RemoteDesktop_SuppressWhenMinimized"=dword:00000002
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Terminal Server Client]
+"RemoteDesktop_SuppressWhenMinimized"=dword:00000002
+```
+2. 远程机器以此命令退出远程桌面
+```batch
+:: X为远程会话号，通常为1
+%windir%\System32\tscon.exe X /dest:console
+```
+
+* [Recording disconnected RDP sessions](https://github.com/rdp/screen-capture-recorder-to-video-windows-free/issues/7)
+* [screencapture with rdp connections](https://www.autoitscript.com/forum/topic/133603-screencapture-with-rdp-connections/)
+* [Using RemoteDesktop_SuppressWhenMinimized for a nested RDP session](https://social.technet.microsoft.com/Forums/sqlserver/en-US/0dd103cc-0da3-4d78-9a79-7aaf8598184c/using-remotedesktopsuppresswhenminimized-for-a-nested-rdp-session?forum=winserverTS)
+
 ## 对多个对象做同样处理
 * [Bash参考手册](http://www.gnu.org/software/bash/manual/bashref.html)
 ```bash
