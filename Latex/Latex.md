@@ -19,4 +19,10 @@ cp $TEX_HOME/texmf-var/fonts/conf/texlive-fontconfig.conf /etc/fonts/conf.d/09-t
 
 * [How can I make the Ubuntu see LaTeX fonts installed through TeXLive?](https://askubuntu.com/questions/1174423/how-can-i-make-the-ubuntu-see-latex-fonts-installed-through-texlive)
 
+## 五线谱简谱排版
+* [LaTeX排版的中文乐谱](https://www.latexstudio.net/archives/11337.html)
+* [用Lilypond排版简谱](https://www.cnblogs.com/quantumman/p/5189701.html)
+* [Lilipond简谱插件](https://ssb22.user.srcf.net/mwrhome/jianpu-ly.py)
+* [Musixtex写五线谱](https://blog.csdn.net/cclethe/article/details/73065473)
+
 
