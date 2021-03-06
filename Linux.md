@@ -464,5 +464,55 @@ git clone git@github.com:ufidon/Za.git
 ## Git教程
 * [集锦](https://gist.github.com/jaseemabid/1321592)
 
+## 远程桌面
+```bash
+# 1. 安装桌面
+sudo apt update -y && sudo apt upgrade -y
+sudo apt install ubuntu-desktop # install Gnome
+
+# xrdp可选
+sudo apt install xubuntu-desktop
+
+# 2. 安装xrdp
+sudo apt install xrdp
+sudo systemctl status xrdp
+
+# xrdp默认采用/etc/ssl/private/ssl-cert-snakeoil.key
+sudo adduser xrdp ssl-cert
+
+sudo systemctl restart xrdp
+
+# 3.防火墙设置
+sudo ufw allow from 登录机所在cidr to any port 3389
+
+# 允许从任何地方远程桌面
+sudo ufw allow 3389
+
+# 4. 去除每次远程登录之授权请求
+# 4.1 wifi扫描
+sudo vim /etc/polkit-1/localauthority/50-local-d/10-network-manager.pkla # 键入下文
+[Allow Wifi Scan]
+Identity=unix-user:*
+Action=org.freedesktop.NetworkManager.wifi.scan;org.freedesktop.NetworkManager.enable-disable-wifi;org.freedesktop.NetworkManager.settings.modify.own;org.freedesktop.NetworkManager.settings.modify.syste>
+ResultAny=yes
+ResultInactive=yes
+ResultActive=yes
+
+# 4.2 色彩设备
+sudo vim  /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla  # 键入下文
+[Allow Colord all Users]
+Identity=unix-user:*
+Action=org.freedesktop.color-manager.create-device;org.freedesktop.color-manager.create-profile;org.freedesktop.color-manager.delete-device;org.freedesktop.color-manager.delete-profile;org.freedesktop.color-manager.modify-device;org.freedesktop.color-manager.modify-profile
+ResultAny=no
+ResultInactive=no
+ResultActive=yes
+```
+
+
+* [How to Install Xrdp Server (Remote Desktop) on Ubuntu 20.04](https://linuxize.com/post/how-to-install-xrdp-on-ubuntu-20-04/)
+  * [xRDP – Easy install xRDP on Ubuntu](https://c-nergy.be/blog/?p=15733)
+  * [xRDP – How to Fix the Infamous system crash popups](http://c-nergy.be/blog/?p=12043)
+  * [xRDP - Authentication required. System policy prevents WiFi scans](https://askubuntu.com/questions/1291512/authentication-required-system-policy-prevents-wifi-scans-in-focalfossa)
+* [xrdp thinclient_drive](http://catch22cats.blogspot.com/2018/05/xrdp-creates-strange-directory-called.html)
 
 
