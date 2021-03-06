@@ -464,6 +464,87 @@ git clone git@github.com:ufidon/Za.git
 ## Git教程
 * [集锦](https://gist.github.com/jaseemabid/1321592)
 
+## 版本管理
+```bash
+# 0. 都安装到/opt
+sudo chown -R $USER:$USER /opt
+
+# 1. 安装sdkman
+export SDKMAN_DIR="/opt/sdkman" && curl -s "https://get.sdkman.io" | bash
+# 用sdkman安装多个java版本
+
+# 2. 安装nvm
+# 安装依件
+sudo apt install build-essential libssl-dev
+
+# 安装nvm
+export NVM_DIR="/opt/nvm" && (
+  git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+  cd "$NVM_DIR"
+  git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+) && \. "$NVM_DIR/nvm.sh"
+# 放如下三行于 $HOME/.bashrc
+export NVM_DIR="/opt/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion
+
+# 手工更新
+(
+  cd "$NVM_DIR"
+  git fetch --tags origin
+  git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+) && \. "$NVM_DIR/nvm.sh"
+
+# 安装LTS node
+nvm install --lts
+nvm use --lts
+
+# 3. 安装miniconda
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh
+
+conda config --add channels conda-forge
+conda update conda
+
+# 建ml环境并安装scikit-learn和pytorch
+conda create --name ml scikit-learn # 建名为ml的环境并安装scikit-learn
+conda env --list
+conda info --envs
+conda activate ml
+
+conda install  numpy scipy matplotlib ipython jupyter pandas sympy nose scikit-image
+# 安装pytorch
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+conda deactivate
+
+# 建tensorflow 环境并安装
+conda create -n tensorflow python=3.8
+conda activate tensorflow
+pip install --upgrade pip
+wget https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow_cpu-2.4.0-cp38-cp38-manylinux2010_x86_64.whl
+pip install ./tensorflow_cpu-2.4.0-cp38-cp38-manylinux2010_x86_64.whl
+pip install  numpy scipy matplotlib ipython jupyter pandas sympy nose scikit-image
+conda deactivate
+
+# 建sage环境并安装sagemath
+conda install mamba -c conda-forge # installs mamba
+mamba create -n sage sage -c conda-forge # replaces "conda create..."
+```
+
+
+* [sdkman](https://sdkman.io/)
+* [nvm](https://github.com/nvm-sh/nvm)
+  * [.profile not running when I start a bash terminal](https://superuser.com/questions/385766/profile-not-running-when-i-start-a-bash-terminal)
+* [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html)
+  * [Get your computer ready for machine learning: How, what and why you should use Anaconda, Miniconda and Conda](https://towardsdatascience.com/get-your-computer-ready-for-machine-learning-how-what-and-why-you-should-use-anaconda-miniconda-d213444f36d6)
+  * [scikit-learn](https://scikit-learn.org/stable/install.html)
+  * [scipy](https://www.scipy.org/install.html)
+  * [scikit-image](https://scikit-image.org/docs/stable/install.html)
+  * [pytorch](https://pytorch.org/get-started/locally/)
+  * [tensorflow](https://www.tensorflow.org/install?)
+    * [Not creating XLA devices, tf_xla_enable_xla_devices not set](https://github.com/tensorflow/tensorflow/issues/44683)
+  * [sagemath](https://doc.sagemath.org/html/en/installation/conda.html)
+
 ## 远程桌面
 ```bash
 # 1. 安装桌面
