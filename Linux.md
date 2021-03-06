@@ -529,6 +529,19 @@ conda deactivate
 # 建sage环境并安装sagemath
 conda install mamba -c conda-forge # installs mamba
 mamba create -n sage sage -c conda-forge # replaces "conda create..."
+
+# 配置SageTex
+TEXMFHOME=$(kpsewhich -var-value=TEXMFHOME)
+echo $TEXMFHOME 
+ln -s /opt/miniconda/envs/sage/share/texmf/tex/latex/sagetex "$TEXMFHOME/tex/latex/sagetex"
+ls -l "$TEXMFHOME/tex/latex/sagetex"
+ls -l "$TEXMFHOME/tex/latex/sagetex/"
+TEXLOCAL=$(kpsewhich -var-value=TEXMFLOCAL)
+echo $TEXLOCAL
+texhash $TEXLOCAL
+
+# jyputer notebook 显示Latex数学公式
+%display latex
 ```
 
 
