@@ -1,4 +1,11 @@
 #!/usr/bin/env perl
+# Refs:
+# 1. https://www.pdflabs.com/blog/export-and-import-pdf-bookmarks/
+# 2. https://perlmaven.com/traversing-a-directory-tree-finding-required-files
+# 3. https://perldoc.perl.org/File::Find
+# 4. https://perlmaven.com/recursive-subroutines
+#
+
 use utf8;
 use strict;
 use warnings;
@@ -44,7 +51,7 @@ for my $fp (@rfp)
     push(@pdffiles, $fp);
 
     # 构建书签
-    $tmpstr = `pdftk '$fp' dump_data | grep -i NumberOfPages`;
+    $tmpstr = `pdftk '$fp' dump_data_utf8 | grep -i NumberOfPages`;
     $pages = int((split(/:/,$tmpstr))[1]);
 
     $fname = substr($fp, 0, -4);
@@ -64,4 +71,4 @@ my $pdffilesstr = join(" ", @pdffilesquoted);
 my $rescon = `pdftk $pdffilesstr cat output tmp.pdf`;
 
 # 更新书签
-$rescon = `pdftk tmp.pdf update_info data.txt output "$respdf"`;
+$rescon = `pdftk tmp.pdf update_info_utf8 data.txt output "$respdf"`;
