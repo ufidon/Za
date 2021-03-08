@@ -42,7 +42,7 @@ function 遍历 {
     # 制作本层文件的书签
     
     #Write-Host $本层文件
-    $本层文件 | ForEach-Object{
+    $本层文件 | Sort-Object Name | ForEach-Object{
         $Script:源文件 += $_.FullName + " "
         $文层级 = $层级 + 1
         $文签 = "BookmarkBegin`n" + "BookmarkTitle: " + $_.BaseName + "`n" + "BookmarkLevel: ${文层级}`n" + "BookmarkPageNumber: " + $Script:总页数 + "`n";
