@@ -23,9 +23,9 @@ function 遍历 {
 
     # 书签层级
     # 不含顶层文件夹为书签
-    $层级 = $($文件夹.FullName -split '/').Length - 1 - $Script:始层级
+    #$层级 = $($文件夹.FullName -split '/').Length -1  - $Script:始层级
     # 含顶层文件夹为书签
-    #$层级 = $($文件夹.FullName -split '/').Length - $Script:始层级
+    $层级 = $($文件夹.FullName -split '/').Length - $Script:始层级
     #Write-Host $层级
 
     # 制作文件夹的书签
@@ -34,7 +34,7 @@ function 遍历 {
     #Write-Host $文件夹.BaseName; 
     $本层文件 = $文件夹.GetFiles("*.pdf")
 
-    if ($本层文件.Length -gt 0) {
+    if (($本层文件.Length -gt 0) -or ($文件夹 -eq $Script:文件夹)) {
         $夹签 = "BookmarkBegin`n" + "BookmarkTitle: " + $文件夹.BaseName + "`n" + "BookmarkLevel: ${层级}`n" + "BookmarkPageNumber: " + $Script:总页数 + "`n";
         $Script:书签 += $夹签        
     }
@@ -42,8 +42,8 @@ function 遍历 {
     # 制作本层文件的书签
     
     #Write-Host $本层文件
-    $本层文件 | Sort-Object Name | ForEach-Object{
-        $Script:源文件 += $_.FullName + " "
+    $本层文件 | Sort-Object Name -Descending | ForEach-Object{
+        $Script:源文件 += "'"+$_.FullName+"'" + " "
         $文层级 = $层级 + 1
         $文签 = "BookmarkBegin`n" + "BookmarkTitle: " + $_.BaseName + "`n" + "BookmarkLevel: ${文层级}`n" + "BookmarkPageNumber: " + $Script:总页数 + "`n";
         $Script:书签 += $文签
@@ -83,8 +83,10 @@ Write-Host "书签内容：$书签内容"
 
 # 合并源文件
 Write-Host "待合并pdf文件： ${源文件}"
-pdftk $($源文件 -split " ") cat output 暂.pdf
-#bash -c "pdftk $源文件 cat output 暂.pdf"
+
+
+#pdftk $($源文件 -split " " | ForEach-Object { if( $_ -ne ''){ "`'$_`'"}}) cat output 暂.pdf
+bash -c "pdftk $源文件 cat output 暂.pdf"
 Write-Host "PDF合并结果： $?"
 
 # 更新书签
