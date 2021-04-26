@@ -26,3 +26,5 @@ cp $TEX_HOME/texmf-var/fonts/conf/texlive-fontconfig.conf /etc/fonts/conf.d/09-t
 * [Musixtex写五线谱](https://blog.csdn.net/cclethe/article/details/73065473)
 
 
+## 竖排古籍
+* [upLatex](https://github.com/Steve-Cheung-emct)
