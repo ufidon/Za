@@ -359,14 +359,62 @@ sudo patchelf --add-needed libcrypt.so.1 /opt/VBoxGuestAdditions-6.0.8/lib/VBoxO
 * [参考](https://www.virtualbox.org/ticket/18324)
 
 ## ssh 访问github
-0. https 访问 github, 提供用户名和密码
+
 ```bash
+# 0. https 访问 github, 提供用户名和密码
 git clone https://github.com/usernameatgithub/repo.git
 # ex.
 git clone https://github.com/ufidon/Za.git
+
+# 1. ssh 访问 github, 无需提供用户名和密码
+git clone git@github.com:ufidon/za.git
+
+# https 转 ssh
+git remote -v
+git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
+# ssh 转 https
+git remote -v
+git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ```
 
-## git bash
+* [Managing remote repositories](https://docs.github.com/en/github/getting-started-with-github/getting-started-with-git/managing-remote-repositories)
+
+## git 标签管理
+
+```bash
+# 列出标签
+git tag
+# 查看标签
+git show v1.6
+
+# 创建注释标签并提交远程服务器
+git tag -a v1.6 -m "稳定版 1.6"
+git push origin v1.6
+
+# 创建轻标签
+git tag v1.6-lw
+
+# 给以前的提交打标签
+# 查看提交
+git log --pretty=oneline
+# 打标签
+git tag -a v1.2 9fceb02
+
+# 删除标签
+git tag -d v1.6-lw
+git push origin :refs/tags/v1.6-lw
+# 二合一做法
+git push origin --delete v1.6-lw
+
+# 取出某标签版
+git pull
+git checkout v2.0.0
+
+```
+
+* [Git Basics - Tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+
+## git bash 添加私钥
 
 ```bash
 exec ssh-agent bash 
