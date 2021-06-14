@@ -414,6 +414,18 @@ git checkout v2.0.0
 
 * [Git Basics - Tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
 
+## git本地仓库与远程仓库的比较
+```bash
+# 获取远程仓库信息
+git fetch
+
+# 查看所有分支
+git branch -a
+
+# 比较相应的分支，如master（本地）与origin/master(远程)
+git diff master origin/master
+```
+
 ## git bash 添加私钥
 
 ```bash
