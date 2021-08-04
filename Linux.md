@@ -15,6 +15,8 @@ wget \
          www.website.org/tutorials/html/
 ```
 
+## 压缩文件
+7z a -p -mhe=on 压档名.7z 被压档或夹名
 
 ## 去除已知pdf密码或者保护
 * [HowTo: Linux Remove a PDF File Password Using Command Line Options](https://www.cyberciti.biz/faq/removing-password-from-pdf-on-linux/)
