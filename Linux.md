@@ -1,5 +1,8 @@
 # Linux 技巧杂记
 
+## 不安装推荐包
+apt --no-install-recommends install [软件包]
+
 ## 怎样下载一个网站
 * [Downloading an Entire Web Site with wget](http://www.linuxjournal.com/content/downloading-entire-web-site-wget)
 ```bash
