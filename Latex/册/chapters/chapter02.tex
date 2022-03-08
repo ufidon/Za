@@ -1,0 +1,71 @@
+\chapter{The Second Chapter}
+
+\AddToShipoutPictureBG*{% on the background, only this page
+	\AtTextUpperLeft{%
+		\put(30mm,-25mm){\color{lightgray}\circle*{50}\quad 前景○}
+		
+	}
+}
+\AddToShipoutPictureFG*{% on the foreground, only this page
+	\AtTextUpperLeft{%
+		\put(60mm,-25mm){\color{blue}\circle*{50}}
+	}
+}
+
+\AddToShipoutPictureBG*{%
+	\AtTextCenter{%
+		\makebox(0,0)[c]{\resizebox{\textwidth}{!}{%
+		\rotatebox{45}{\textsf{\textbf{\color{lightgray}草稿}}}}}
+	}
+}
+
+文本内的图片不会换行直接出去了
+\setlength{\unitlength}{1.6cm}
+\begin{picture}(6,5)
+\thicklines
+\put(1,0.5){\line(2,1){3}}
+\put(4,2){\line(-2,1){2}}
+\put(2,3){\line(-2,-5){1}}
+\put(0.7,0.3){$A$}
+\put(4.05,1.9){$B$}
+\put(1.7,2.95){$C$}
+\put(3.1,2.5){$a$}
+\put(1.3,1.7){$b$}
+\put(2.5,1.05){$c$}
+\put(0.3,4){$F=\sqrt{s(s-a)(s-b)(s-c)}$}
+\put(3.5,0.4){$\displaystyle s:=\frac{a+b+c}{2}$}
+\put(0,0){\color{red}\circle*{0.1}(0,0)}
+\put(6,0){\color{red}\circle*{0.1}(6,0)}
+\put(0,5){\color{red}\circle*{0.1}(0,5)}
+\put(6,5){\color{red}\circle*{0.1}(6,5)}
+\end{picture}
+
+{\fontsize{50}{50}\selectfont 大}江东去
+{\tiny 微}{\scriptsize 细}{\footnotesize 注}{\small 小}{\normalsize 常}{\large 大}{\Large 更大}{\LARGE 特大}{\huge 巨}{\Huge 更巨}
+
+\sffamily
+文字用\textcolor{red}{红色}强调\\
+\colorbox[gray]{0.95}{浅灰色背景} \colorbox[rgb]{0.5,0.5,0}{\hspace{10em}\phantom{色}}\\
+\fcolorbox{blue}{yellow}{%
+	\textcolor{blue}{蓝色边框+文字,%
+		黄色背景}
+}
+
+\begin{tikzpicture}
+\node[circle,fill=blue,text=white,
+node font={\bfseries}]
+(甲) at (-2,0) {节点};
+\node[rectangle,rounded corners,
+draw=gray,
+node font={\sffamily\slshape}]
+(①) at (2,0) {框数};
+\end{tikzpicture}
+
+\begin{tikzpicture}[remember picture,overlay]
+\foreach \bound in {north,south,west,east,45} {
+	\node[anchor=\bound] at (current page.\bound) {I am \bound-bound...};
+}
+\node at (current page.center) {I am NOT MOOVING!};
+% You can see the border of the page node with this:
+\draw[thick] (current page.south west) rectangle (current page.north east);
+\end{tikzpicture}

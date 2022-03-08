@@ -1,0 +1,225 @@
+\chapter{The First Chapter}
+
+\begin{tabular}{l}
+    \hline
+    “天地玄黄,宇宙洪荒。日月盈昃,辰宿列张。”\footnotemark \\
+    \hline
+\end{tabular}
+\footnotetext{表格里的名句出自《千字文》。}
+    
+\marginpar{\footnotesize 边注较窄,不要写过多文字,最好设置较小的字号。}
+
+《木兰诗》:
+\begin{quotation}
+	万里赴戎机,关山度若飞。
+	朔气传金柝,寒光照铁衣。
+	将军百战死,壮士十年归。
+	
+	归来见天子,天子坐明堂。
+	策勋十二转,赏赐百千强。......
+\end{quotation}
+
+\begin{quote}
+	万里赴戎机,关山度若飞。
+	朔气传金柝,寒光照铁衣。
+	将军百战死,壮士十年归。
+	
+	归来见天子,天子坐明堂。
+	策勋十二转,赏赐百千强。......
+\end{quote}
+
+\begin{verse}
+	万里赴戎机,关山度若飞。
+	朔气传金柝,寒光照铁衣。
+	将军百战死,壮士十年归。
+	
+	归来见天子,天子坐明堂。
+	策勋十二转,赏赐百千强。......
+\end{verse}
+
+\begin{verbatim}
+#include <iostream>
+int main()
+{
+  std::cout << "你好，高那德!"
+  << std::endl;
+  return 0;
+}
+\end{verbatim}
+
+\begin{verbatim*}
+#include <iostream>
+int main()
+{
+  std::cout << "你好，高那德!"
+  << std::endl;
+  return 0;
+}
+\end{verbatim*}
+
+\verb|\LaTeX| \\
+\verb+(a || b)+ \verb*+(a || b)+
+
+
+\begin{lstlisting}
+for i:=maxint to 0 do
+begin
+{ 做点啥 }
+end;
+Write(’Case insensitive ’);
+WritE(’Pascal keywords.’);
+\end{lstlisting}
+
+
+基线
+\begin{tabular}{|c|}
+	表腰\\
+	与基线对齐\\
+\end{tabular}
+\begin{tabular}[t]{|c|}
+	表头\\
+	与基线对齐\\
+\end{tabular}
+\begin{tabular}[b]{|c|}
+	表脚\\
+	与基线对齐\\
+\end{tabular}
+基线\par
+
+下一段：万里赴戎机,关山度若飞。
+朔气传金柝,寒光照铁衣。
+将军百战死,壮士十年归。
+
+\def\夏树{\Summertree}
+\夏树
+
+\begin{tabular}{|@{\Springtree}r@{} @{:}l r@{\Wintertree}|}
+	\hline
+	1 & 1 & 一 \\
+	11 & 3 & 十一 \\
+	\hline
+\end{tabular}
+
+\begin{tabular}
+	{>{\centering\arraybackslash}p{9em}}
+	\hline
+	万里赴戎机,关山度若飞。
+	朔气传金柝,寒光照铁衣。 \\
+	\hline
+\end{tabular}
+
+\newcommand\木兰辞{万里赴戎机}
+
+\begin{tabular}{cp{2em}m{2em}b{2em}}
+	\hline
+	基线 & \木兰辞 & \木兰辞 & \木兰辞 \\
+	\hline
+\end{tabular}
+
+\begin{tabularx}{14em}%
+	{|*{5}{>{\centering\arraybackslash}X|}}
+	\hline
+	甲 & 乙 & 丙 & 丁 & 戊 \\ \hline
+	己 & 庚 & 辛 & 壬 & 癸 \\ \hline
+\end{tabularx}
+
+\begin{tabular}{|c|c|c|}
+	\hline
+	4 & 9 & 2 \\ 
+	\cline{2-3}
+	3 & 5 & 7 \\ 
+	\cline{1-1}
+	8 & 1 & 6 \\ 
+	\hline
+\end{tabular}
+
+\begin{tabular}{cccc}
+	\toprule
+	& \multicolumn{3}{c}{数字} \\
+	\cmidrule{2-4}
+	& 1 & 2 & 3 \\
+	\midrule
+	Alphabet & A & B & C \\
+	Roman
+	& I & II& III \\
+	\bottomrule
+\end{tabular}
+
+\begin{tabular}{cccc}
+	\hline\\
+	& \multicolumn{3}{c}{数字} \\
+	\cmidrule{2-4}
+	& 1 & 2 & 3 \\
+	\hline\\
+	字母 & A & B & C \\
+	欧数
+	& I & II& III \\
+	\hline\\
+\end{tabular}
+
+\begin{tabular}{|*{3}{c|}}
+	\hline
+	甲 & 乙 & 丙 \\\hline
+	\multicolumn{2}{|c|}{甲乙} & \multicolumn{1}{r|}{丁}\\\hline
+	甲 & \multicolumn{2}{c|}{乙丙} \\\hline
+\end{tabular}
+
+\begin{tabular}{ccc}
+	\hline
+	\multirow{2}{*}{项} & \multicolumn{2}{c}{值}\\
+	\cline{2-3}
+	& 首 & 末 \\ \hline
+	甲 & 乙 & 丙 \\\hline
+\end{tabular}
+
+|\mbox{ 庚、辛、壬、癸}|\\
+|\makebox[10em]{ 庚、辛、壬、癸。}|\\
+|\makebox[10em][l]{ 庚、辛、壬、癸。}|\\
+|\makebox[10em][r]{ 庚、辛、壬、癸。}|\\
+|\makebox[10em][s]{ 庚、辛、壬、癸。}|
+
+\framebox[10em][r]{测试盒。}\\[1ex]
+\setlength{\fboxrule}{1.6pt}
+\setlength{\fboxsep}{1em}
+\framebox[10em][r]{\phantom{测}}
+\framebox[10em][r]{测试盒。}
+
+三字经:\parbox[t]{3em}%
+{人之初 性本善 性相近 习相远}
+\quad
+千字文:\lower0.4ex\hbox{
+\begin{minipage}[b][2ex][t]{4em}
+	天地玄黄 宇宙洪荒
+\end{minipage}}
+
+\meaning\XeteX
+
+微页\fbox{\begin{minipage}{15em}%
+		这是一个垂直盒子的测试。
+		\footnote{脚注来自 微页。}
+\end{minipage}}
+
+黑 \rule{12pt}{4pt} 盒.
+上些 \rule[4pt]{6pt}{8pt} 与
+下些 \rule[-4pt]{6pt}{8pt} 盒.
+一条 \rule[-.4pt]{3em}{.4pt} 线.
+\hrule
+
+\TPGrid[0mm,0mm]{10}{10}
+\TPShowGrid{10}{10}
+
+\begin{textblock}{1}(0,0)
+\textblocklabel{第二块}
+任意位置放文本。
+\end{textblock}
+
+\begin{tikzpicture}[remember picture,overlay,every node/.style={anchor=center}]
+\node at (page cs:0.5,0.3) {0.5,0.3};
+\node at (page cs:-0.25,0.3) {-0.25,0.3};
+\node at (page cs:0,0) {0,0};
+\draw(page cs:-0.25,0) -- (page cs:.75,-0.5);
+\draw[thick] (page cs:-1,-1) rectangle (page cs:1,1);
+\end{tikzpicture}
+
+\lettrine[lines=3,lhang=0.2,loversize=0.25]{关}{山}度若飞
+

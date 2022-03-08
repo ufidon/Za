@@ -1,0 +1,110 @@
+\documentclass[a4paper,12pt]{ctexbook}
+\usepackage{fontspec}
+\setmainfont{Noto Serif CJK SC}
+\usepackage{graphicx}
+\usepackage{listings,array,tabularx,booktabs,multirow,multicol}
+\usepackage{tikz}
+\usepackage{tikzsymbols}
+
+% Defining a new coordinate system for the page:
+%
+% --------------------------
+% |(-1,1)    (0,1)    (1,1)|
+% |                        |
+% |(-1,0)    (0,0)    (1,0)|
+% |                        |
+% |(-1,-1)   (0,-1)  (1,-1)|
+% --------------------------
+\makeatletter
+\def\parsecomma#1,#2\endparsecomma{\def\page@x{#1}\def\page@y{#2}}
+\tikzdeclarecoordinatesystem{page}{
+	\parsecomma#1\endparsecomma
+	\pgfpointanchor{current page}{north east}
+	% Save the upper right corner
+	\pgf@xc=\pgf@x%
+	\pgf@yc=\pgf@y%
+	% save the lower left corner
+	\pgfpointanchor{current page}{south west}
+	\pgf@xb=\pgf@x%
+	\pgf@yb=\pgf@y%
+	% Transform to the correct placement
+	\pgfmathparse{(\pgf@xc-\pgf@xb)/2.*\page@x+(\pgf@xc+\pgf@xb)/2.}
+	\expandafter\pgf@x\expandafter=\pgfmathresult pt
+	\pgfmathparse{(\pgf@yc-\pgf@yb)/2.*\page@y+(\pgf@yc+\pgf@yb)/2.}
+	\expandafter\pgf@y\expandafter=\pgfmathresult pt
+}
+\makeatother
+
+\usepackage{lettrine}
+
+\usepackage[absolute]{textpos}
+%\usepackage[grid=true,gridcolor=red,subgridcolor=green]{eso-pic}
+%\usepackage{eso-pic}
+%\usepackage{pict2e,showframe,xcolor}
+%\AddToShipoutPictureFG{
+%	\AtPageUpperLeft{%
+%		\raisebox{-\height}{%
+%			\fbox{页心}%
+%		}%
+%	}%
+%	\AtPageCenter{%
+%	\raisebox{-\height}{%
+%		\fbox{页心}%
+%		}%
+%	}%
+%}
+
+\usepackage{titlesec}
+\titleformat{\section}[frame]
+{\normalfont}
+{\filright
+	\footnotesize
+	\enspace  \thesection\enspace}
+{8pt}
+{\Large\bfseries\filcenter}
+\titleformat{\chapter}[frame]
+{\normalfont}
+{\filright
+	\footnotesize
+	\enspace 第{\Large\color{blue}{\thesection}}回 \enspace}
+{8pt}
+{\Large\color{green}\bfseries\filcenter}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyfoot[C]{\Wintertree\bfseries\thepage\Summertree}
+\fancyhead[LO]{\Large\color{red}\bfseries\rightmark}
+\fancyhead[RE]{\Large\color{red}\bfseries\leftmark}
+\renewcommand{\headrulewidth}{0.4pt} % 注意不用 \setlength
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = blue, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor   = red %Colour of citations
+}
+
+\begin{document}
+
+%\author{TeXstudio Team}
+%\title{Simple Book Example}
+%\date{January 2013}
+
+\frontmatter
+%\maketitle
+\include{titlepg.tex}
+\tableofcontents
+
+\mainmatter
+\include{./chapters/chapter01}
+\include{./chapters/chapter02}
+
+\backmatter
+% bibliography, glossary and index would go here.
+
+\end{document}
