@@ -21,7 +21,6 @@ $A$1:$A$7, $A$1:$Q$1 绝对寻址, 拖动不变
 ```
 
 ## SDKMAN 管理的 JDK 与 Zotero LibreOffice插件
-## pdftk-java 安装前也需如下设置
 
 需做如下环境设置
 ```bash
@@ -32,4 +31,22 @@ export JAVA_HOME=/opt/sdkman/candidates/java/current
 sudo ln -s "$JAVA_HOME/bin/java" /usr/bin/java
 sudo ln -s "$JAVA_HOME/bin/javac" /usr/bin/javac
 
+
+# 3. 安装zotero
+# Install zotero, go to the fold where zotero for linux is saved
+
+# Change the following file name(Zotero-5.0.88_linux-x86_64.tar.bz2) to yours
+tar jxf Zotero-5.0.88_linux-x86_64.tar.bz2
+
+# Check the name(Zotero_linux-x86_64) of the unarchived folder of zotero, change it to yours
+sudo chown $USER:$USER /opt
+mv Zotero_linux-x86_64 /opt/zotero
+cd /opt/zotero
+sudo ./set_launcher_icon
+sudo cp /opt/zotero/zotero.desktop /usr/share/applications/
+# logout then login Ubuntu, 需要编辑其菜单以指向正确位置
+sudo apt install libreoffice-java-common 
+# run zotero from start menu and install Zotero LibreOffice plugin
 ```
+
+pdftk-java 安装有如下设置也不行，自己编译[pdftk-java](https://gitlab.com/pdftk-java/pdftk)
