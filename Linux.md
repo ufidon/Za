@@ -674,4 +674,21 @@ ResultActive=yes
   * [xRDP - Authentication required. System policy prevents WiFi scans](https://askubuntu.com/questions/1291512/authentication-required-system-policy-prevents-wifi-scans-in-focalfossa)
 * [xrdp thinclient_drive](http://catch22cats.blogspot.com/2018/05/xrdp-creates-strange-directory-called.html)
 
+## VPN
+用多协议客户openconnect可连接多种VPN服务器，从而无需安装相应客户端，如Cisco AnyConnect，GlobalProtect等。
 
+```bash
+# 1. 安装openconnect
+sudo apt install network-manager-openconnect-gnome
+# 2. 用openconnect图形界面连接VPN服务器，如失败用以下命令行，
+# 保持运行以维持连接，关闭则断开
+# 2.1 代替GlobalProtect客户端
+sudo openconnect --protocol=gp vpn服务器 -u 户名
+# 2.2 代替AnyConnect客户端
+sudo openconnect --protocol=anyconnect vpn服务器 -u 户名
+
+```
+
+* [How to connect to a GlobalProtect VPN](https://linuxkamarada.com/en/2020/03/19/how-to-connect-to-a-globalprotect-vpn)
+* [openconnect - Multi-protocol VPN client, for Cisco AnyConnect VPNs and others](https://manpages.ubuntu.com/manpages/jammy/man8/openconnect.8.html)
+  * [支持的vpn协议](https://www.infradead.org/openconnect/protocols.html)
