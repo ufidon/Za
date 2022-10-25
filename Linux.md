@@ -632,8 +632,11 @@ sudo apt install ubuntu-desktop # install Gnome
 # xrdp可选
 sudo apt install xubuntu-desktop
 
+# 移除 dbus-user-session
+sudo apt purge dbus-user-session
+
 # 2. 安装xrdp
-sudo apt install xrdp
+sudo apt install dbus-x11 xrdp xorgxrdp
 sudo systemctl status xrdp
 
 # xrdp默认采用/etc/ssl/private/ssl-cert-snakeoil.key
@@ -649,7 +652,7 @@ sudo ufw allow 3389
 
 # 4. 去除每次远程登录之授权请求
 # 4.1 wifi扫描
-sudo vim /etc/polkit-1/localauthority/50-local-d/10-network-manager.pkla # 键入下文
+sudo vim /etc/polkit-1/localauthority/50-local.d/10-network-manager.pkla # 键入下文
 [Allow Wifi Scan]
 Identity=unix-user:*
 Action=org.freedesktop.NetworkManager.wifi.scan;org.freedesktop.NetworkManager.enable-disable-wifi;org.freedesktop.NetworkManager.settings.modify.own;org.freedesktop.NetworkManager.settings.modify.syste>
@@ -672,6 +675,8 @@ ResultActive=yes
   * [xRDP – Easy install xRDP on Ubuntu](https://c-nergy.be/blog/?p=15733)
   * [xRDP – How to Fix the Infamous system crash popups](http://c-nergy.be/blog/?p=12043)
   * [xRDP - Authentication required. System policy prevents WiFi scans](https://askubuntu.com/questions/1291512/authentication-required-system-policy-prevents-wifi-scans-in-focalfossa)
+  * [Error "Could not acquire name on session bus"](https://github.com/neutrinolabs/xrdp/issues/1559)
+  * [Using the console and XRDP together in Debian / Ubuntu / Mint](https://github.com/neutrinolabs/xrdp/wiki/Debian-dbus-user-session-package)
 * [xrdp thinclient_drive](http://catch22cats.blogspot.com/2018/05/xrdp-creates-strange-directory-called.html)
 
 ## VPN
