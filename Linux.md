@@ -632,8 +632,6 @@ sudo apt install ubuntu-desktop # install Gnome
 # xrdp可选
 sudo apt install xubuntu-desktop
 
-# 移除 dbus-user-session
-sudo apt purge dbus-user-session
 
 # 2. 安装xrdp
 sudo apt install dbus-x11 xrdp xorgxrdp
