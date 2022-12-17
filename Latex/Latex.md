@@ -2,8 +2,10 @@
 各种杂散的小技巧
 
 ## 找字体
+```bash
 fc-list -f "%{family}\n" :lang=zh
 fc-list  :lang=zh
+```
 
 ## 安装字体
 TeX Live on Windows：
@@ -36,6 +38,7 @@ sudo apt install fonts-babelstone-han
 sudo apt install fonts-hanazono
 ```
 * [字源](https://hanziyuan.net/)
+  * [中国哲学书电子化计划](https://ctext.org/zhs)
 * [闹石汉字 BabelStone Han](https://www.babelstone.co.uk/Fonts/Han.html)
 * [点阵体](https://github.com/tony/dot-fonts)
   * [花园体 Hanazono](http://fonts.jp/hanazono/)
