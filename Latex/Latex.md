@@ -1,6 +1,10 @@
 # Latex技巧杂记
 各种杂散的小技巧
 
+## 找字体
+fc-list -f "%{family}\n" :lang=zh
+fc-list  :lang=zh
+
 ## 安装字体
 TeX Live on Windows：
 1. Install for All Users
