@@ -82,7 +82,7 @@ pdfjam 待去链档.pdf
 ## 安装字体
 * [Ubuntu字体安装](https://wiki.ubuntu.com/Fonts)
 ```bash
-1. 将字体文件拷贝至 /usr/share/fonts, /usr/local/share/fonts, 或 ~/.fonts
+1. 将字体文件复制至 /usr/share/fonts, /usr/local/share/fonts, 或 ~/.fonts
 2. sudo fc-cache -f -v
 ```
 

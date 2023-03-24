@@ -13,6 +13,13 @@ TeX Live on Windows：
 2. Put the font in a project directory and use the Path = command option of fontspec
 3. Put the font in a subdirectory of your local TeX Live directory, normally C:\texlive\texmf-local\fonts. Re-run fc-cache -fsv and luaotfload-tool -f -u -v to update your font caches
 
+On Linux 🐧
+
+```bash
+1. 将字体文件复制至 /usr/share/fonts, /usr/local/share/fonts, 或 ~/.fonts
+2. sudo fc-cache -f -v
+```
+
 
 参考：
 * [My system can't find installed otf and ttf fonts](https://tex.stackexchange.com/questions/511897/my-system-cant-find-installed-otf-and-ttf-fonts)
@@ -46,6 +53,10 @@ sudo apt install fonts-hanazono
   * [字体炉 fontForge](https://fontforge.org/)
   * [剪图器 Clipper2 - Polygon Clipping and Offsetting Library](http://www.angusj.com/clipper2/Docs/Overview.htm)
   * [字形维基 GlyphWiki](http://zhs.glyphwiki.org/wiki/GlyphWiki)
+
+## 更纱等距字体
+- [终端更纱体](https://github.com/laishulu/Sarasa-Term-SC-Nerd)
+- [更纱体](https://github.com/be5invis/Sarasa-Gothic)
 
 ## 五线谱简谱排版
 * [LaTeX排版的中文乐谱](https://www.latexstudio.net/archives/11337.html)
