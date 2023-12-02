@@ -67,3 +67,15 @@ sudo apt install fonts-hanazono
 
 ## 竖排古籍
 * [upLatex](https://github.com/Steve-Cheung-emct)
+
+## 纯文本笔记
+```bash
+for f in *.md; do pandoc --pdf-engine=xelatex \
+-V CJKmainfont="SimSun" --toc -N --highlight-style tango \
+-V colorlinks -V urlcolor=NavyBlue -f markdown-raw_tex \
+ $f -o ${f%%.md}.pdf  ; done
+```
+
+- [纯文本做笔记 --- 使用 Pandoc 把 Markdown 转为 PDF 文件](https://jdhao.github.io/2017/12/10/pandoc-markdown-with-chinese/)
+  - [pandoc doesn't text-wrap code blocks when converting to pdf](https://stackoverflow.com/questions/20788464/pandoc-doesnt-text-wrap-code-blocks-when-converting-to-pdf)
+- [《简单粗暴LaTeX》开源仓库](https://github.com/wklchris/Note-by-LaTeX)
