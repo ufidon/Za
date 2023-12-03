@@ -86,5 +86,6 @@ for f in *.md; do pandoc --pdf-engine=xelatex \
       - [将多种字体合并为一种](https://fonttools.readthedocs.io/en/latest/merge.html)
       - [如何在 XeLaTeX 中指定一系列后备字体？](https://tex.stackexchange.com/questions/323575/how-can-i-specify-a-chain-of-fallback-fonts-in-xelatex)
   - [pandoc doesn't text-wrap code blocks when converting to pdf](https://stackoverflow.com/questions/20788464/pandoc-doesnt-text-wrap-code-blocks-when-converting-to-pdf)
+  - [Line breaks in the header of a Markdown table with PDF output #4890](https://github.com/jgm/pandoc/issues/4890)
   - [Pandoc - changing the layout when compiling markdown](https://tex.stackexchange.com/questions/524177/pandoc-changing-the-layout-when-compiling-markdown)
 - [《简单粗暴LaTeX》开源仓库](https://github.com/wklchris/Note-by-LaTeX)
