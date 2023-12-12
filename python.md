@@ -8,9 +8,6 @@ fc-list | grep -i 'cjk'
 ```
 
 ```python
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 """
 matplot中文的方法:
 1. 指定字体文件
@@ -28,12 +25,13 @@ import matplotlib.font_manager as mf
 myfont = mf.FontProperties(fname=r'/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc')
 plt.rc('text', usetex=True)
 mpl.rcParams['text.usetex'] = True
-mpl.rcParams['text.latex.unicode'] = True
-mpl.rcParams['text.latex.preamble'] = [
-    '\\usepackage{CJK}',
+#mpl.rcParams['text.latex.unicode'] = True
+mpl.rcParams['text.latex.preamble'] = '\n'.join([
+    #r'\usepackage{fontspec}',
+    r'\usepackage{CJK}',
     r'\AtBeginDocument{\begin{CJK}{UTF8}{gbsn}}',
     r'\AtEndDocument{\end{CJK}}'
-]
+])
 
 x = np.arange(-np.pi, np.pi, 0.1)
 y = np.sin(x)
@@ -42,7 +40,38 @@ plt.title(r"正弦曲线图",fontproperties=myfont)
 plt.ylabel(r"$ \textbf{纵轴}\; \sin(x) $",fontproperties=myfont) 
 plt.xlabel(r"$ \textbf{横轴}\; x: -\pi \rightarrow \pi $",fontproperties=myfont)  
 plt.show()
+```
 
+```python
+import matplotlib as mpl
+mpl.use("pgf")
+import matplotlib.pyplot as plt
+
+plt.rcParams.update({
+    "font.family": "serif",  # use serif/main font for text elements
+    "text.usetex": True,     # use inline math for ticks
+    "pgf.rcfonts": False,    # don't setup fonts from rc parameters
+    "pgf.preamble": "\n".join([
+        r'\usepackage{fontspec}',
+         r"\usepackage{url}",            # load additional packages
+         r"\usepackage{unicode-math}",   # unicode math setup
+         #r"\setmainfont{Courier}",  # serif font via preamble
+         r'\usepackage{xeCJK}',
+         r'\xeCJKsetup{CJKmath=true}',
+         r'\setCJKmainfont{NotoSerifCJKsc-SemiBold}',
+    ])
+})
+
+fig, ax = plt.subplots(figsize=(4.5, 2.5))
+
+ax.plot(range(5))
+
+ax.set_xlabel("unicode text: я, ψ, €, ü虫子")
+ax.set_ylabel(r"\url{https://matplotlib.org}")
+ax.legend(["unicode math: $λ=∑_i^∞ μ_i^2 云_啥^石$"])
+
+fig.tight_layout(pad=.5)
+fig.savefig('figure.pdf')
 ```
 
 * 方法二: 设置 matplotlibrc 及 rcParams
