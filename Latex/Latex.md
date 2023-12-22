@@ -79,13 +79,16 @@ for f in *.md; do pandoc --pdf-engine=xelatex \
 
 - [纯文本做笔记 --- 使用 Pandoc 把 Markdown 转为 PDF 文件](https://jdhao.github.io/2017/12/10/pandoc-markdown-with-chinese/)
   - [Pandoc User’s Guide](https://pandoc.org/MANUAL.html)
-  - [Missing characters to convert the output of `tree` command using pandoc](https://tex.stackexchange.com/questions/650014/missing-characters-to-convert-the-output-of-tree-command-using-pandoc)
-    - [Get list of all fonts containing a specific character](https://apple.stackexchange.com/questions/287707/get-list-of-all-fonts-containing-a-specific-character)
-    - [Albatross is a command line tool for finding fonts that contain a given (Unicode) glyph](https://gitlab.com/islandoftex/albatross/)
-    - [如何使用 FontTools 合并两种字体？](https://superuser.com/questions/1657357/how-do-i-merge-two-fonts-using-fonttools)
-      - [将多种字体合并为一种](https://fonttools.readthedocs.io/en/latest/merge.html)
-      - [如何在 XeLaTeX 中指定一系列后备字体？](https://tex.stackexchange.com/questions/323575/how-can-i-specify-a-chain-of-fallback-fonts-in-xelatex)
   - [pandoc doesn't text-wrap code blocks when converting to pdf](https://stackoverflow.com/questions/20788464/pandoc-doesnt-text-wrap-code-blocks-when-converting-to-pdf)
   - [Line breaks in the header of a Markdown table with PDF output #4890](https://github.com/jgm/pandoc/issues/4890)
   - [Pandoc - changing the layout when compiling markdown](https://tex.stackexchange.com/questions/524177/pandoc-changing-the-layout-when-compiling-markdown)
 - [《简单粗暴LaTeX》开源仓库](https://github.com/wklchris/Note-by-LaTeX)
+
+## 字体合并
+- [Missing characters to convert the output of `tree` command using pandoc](https://tex.stackexchange.com/questions/650014/missing-characters-to-convert-the-output-of-tree-command-using-pandoc)
+  - [Get list of all fonts containing a specific character](https://apple.stackexchange.com/questions/287707/get-list-of-all-fonts-containing-a-specific-character)
+  - [Albatross is a command line tool for finding fonts that contain a given (Unicode) glyph](https://gitlab.com/islandoftex/albatross/)
+  - [如何使用 FontTools 合并两种字体？](https://superuser.com/questions/1657357/how-do-i-merge-two-fonts-using-fonttools)
+    - [将多种字体合并为一种](https://fonttools.readthedocs.io/en/latest/merge.html)
+    - [如何在 XeLaTeX 中指定一系列后备字体？](https://tex.stackexchange.com/questions/323575/how-can-i-specify-a-chain-of-fallback-fonts-in-xelatex)
+  - [How to Merge Two Fonts in Linux](https://linuxhint.com/merge_two_fonts_linux/)
