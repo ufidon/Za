@@ -1,0 +1,39 @@
+\documentclass{beamer}
+\usepackage{ctex}
+\CJKsetecglue{}
+% xelatex -shell-escape -synctex=1 -interaction=nonstopmode e5.tex
+
+\usepackage{minted}
+
+% 设置代码的全局样式
+\setminted[c++]{
+  linenos, % 显示行号
+  breaklines, % 自动换行
+  frame=single, % 单线框
+  fontsize=\scriptsize, % 字体大小
+  label=MyCode, % 代码块标签
+}
+
+\begin{document}
+
+\begin{frame}[fragile,allowframebreaks]
+\frametitle{示例C++代码}
+
+\begin{minted}{c++}
+// 你的C++代码
+#include <iostream>
+using namespace std;
+
+int main() {
+    // 这里是你的长C++程序代码...
+    // 确保代码足够长，以便它可以跨越多个幻灯片页面
+    cout << "Hello, World!" << endl;
+    // ...更多代码...
+    return 0;
+}
+\end{minted}
+
+\end{frame}
+
+\end{document}
+
