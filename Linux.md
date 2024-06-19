@@ -487,8 +487,9 @@ ssh-add ~/.ssh/id_rsa
     ssh -T git@gitlab.com
     ```
 
-
-[参考](https://coderwall.com/p/7smjkq/multiple-ssh-keys-for-different-accounts-on-github-or-gitlab)
+- 参考
+  - [Using multiple github accounts with ssh keys](https://gist.github.com/oanhnn/80a89405ab9023894df7)
+  
 
 1. 访问
 ```bash
@@ -496,7 +497,7 @@ git clone git@github.com:usernameatgithub/repo.git
 # ex.
 git clone git@github.com:ufidon/Za.git
 ```
-2. 设置
+1. 设置
  2.1 检查是否有可用的ssh钥匙
  ```bash
  ls -al ~/.ssh
