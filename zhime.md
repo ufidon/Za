@@ -1,5 +1,24 @@
 # 汉字输入法
 
+## ubuntu 22.04 LTS 下安装中州韵输入法
+```bash
+# 0. 安装中文
+# Settings → Region & Language → Mange Installed Languages → 安装中文
+
+# 1. 安装ibus-rime
+sudo apt install ibus-rime rime-data-luna-pinyin rime-data-pinyin-simp rime-data-emoji
+
+# 2. 设置输入法
+# Settings → Keyboard  → Input Sources  → 添加 Chinese (China) → Chinese (Rime)
+
+# 3. 安装绘字
+# 3.1 安装东风破 [https://github.com/rime/plum]
+curl -fsSL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash
+# 3.2 安装绘字 [https://github.com/rime/rime-emoji]
+./rime-install emoji
+./rime-install emoji:customize:schema=luna_pinyin
+```
+
 * [中州韻輸入法引擎](https://github.com/rime)
   * [fcitx-rime](https://github.com/fcitx/fcitx-rime)
   * [四叶草拼音输入方案](https://github.com/fkxxyz/rime-cloverpinyin)
@@ -9,7 +28,7 @@
 
 ```bash
 # 0. 安装中州韵输入法
-sudo ap install  fcitx5-rime
+sudo apt install  fcitx5-rime
 # 1、从 https://github.com/fkxxyz/rime-cloverpinyin/releases 下载四叶草拼音输入方案
 # 2. 将下载文件解压到 	~/.local/share/fcitx5/rime(用户文件夹)
 # 3. 在用户文件夹下创建 default.custom.yaml，输入内容
