@@ -58,6 +58,105 @@ sudo apt install fonts-hanazono
 - [终端更纱体](https://github.com/laishulu/Sarasa-Term-SC-Nerd)
 - [更纱体](https://github.com/be5invis/Sarasa-Gothic)
 
+## 找出含某字符的所有字体文件
+```bash
+albatross '🐕️'
+
+        __ __           __
+.---.-.|  |  |--.---.-.|  |_.----.-----.-----.-----.
+|  _  ||  |  _  |  _  ||   _|   _|  _  |__ --|__ --|
+|___._||__|_____|___._||____|__| |_____|_____|_____|
+
+                 Unicode glyph with code points [1F415, FE0F]                  
+                         mapping to [🐕️] (AND search)                          
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Font name                                                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Twemoji Mozilla                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+## 合并字体档
+```python
+from fontTools.ttLib import TTFont
+from fontTools.merge import Merger
+# Open the first font
+档1 = "宋.ttf"
+
+# Open the second font
+档2= "Julia.ttf"
+
+# Merge the fonts
+并 = Merger()
+合体 = 并.merge([档1, 档2])
+
+# 功能有限, 多数出错
+合体.save("并档.ttf")
+```
+- [fonttools](https://fonttools.readthedocs.io/en/latest/index.html)
+
+## 分解字体档
+```python
+from fontTools.ttLib.ttCollection import TTCollection
+import os
+import sys
+
+合档 = TTCollection('Noto.tcc')
+for 子号, 子体 in enumerate(合档):
+    子体.save(f"Noto{i}.ttf")
+```    
+
+## 轮廓字体转点阵
+```bash
+# 1. -p 16指定的字体大小为16个像素
+otf2bdf -p 16 input_font.otf -o output_font.bdf
+
+# 2. BDF（Bitmap Distribution Format）点阵字体
+fontforge -lang=ff -c 'Open($1); SetFontOrder(2); Generate($2)' input_font.ttf output_font.bdf
+
+# 3. 用fontforge剧本
+#----
+#!/usr/bin/fontforge
+import fontforge
+import sys
+
+font = fontforge.open(sys.argv[1])
+sizes = [12, 14, 16, 18, 20]  # 你想要的点阵字体尺寸
+
+for size in sizes:
+    font.selection.all()
+    font.autoHint()
+    font.autoInstr()
+    font.generate(f"{sys.argv[2]}_{size}.bdf", "", ("otb", "fnt"))
+#----
+fontforge -script convert_to_bitmap.pe input_font.ttf output_font
+```
+
+## 字体设计工具
+- [Fontra — 基于浏览器的字体编辑器](https://fontra.xyz/)
+  - [源码](https://github.com/googlefonts/fontra)
+  - [绘械](https://github.com/typemytype/drawbot/)
+- [fontTools - 字体工具](https://fonttools.readthedocs.io/)
+  - [简介](https://github.com/arrowtype/fonttools-intro)
+- [FontForge](https://fontforge.org)
+  - [点控曲线戏](https://bezier.method.ac/)
+- [TruFont - 真字体](https://trufont.github.io/)
+- [BirdFont - 鸟字体](https://birdfont.org/)
+- [Google 字体工具](https://github.com/googlefonts/gftools/)
+- [fnt - 字体管理器](https://github.com/alexmyczko/fnt)
+- [字体点阵转轮廓](https://github.com/fcambus/bdf2sfd)
+
+## 字体规范
+- [统一字体对象 (UFO)](https://unifiedfontobject.org/)
+- [OpenType® 规范](https://learn.microsoft.com/en-us/typography/opentype/spec/)
+- [OpenType 连排初谈](https://ilovetypography.com/OpenType/opentype-features.html)
+
+## 字体研讨会
+- [Typographics](https://2024.typographics.com/)
+- [Navigating TTFs via FontTools](https://github.com/lynneyun/Tutorials/blob/6cabd407054431559b30d66d9b664462bb1d58b7/FontTools%20%26%20DrawBot/Navigating%20TTFs%20with%20fontTools.ipynb)
+  - [操字体数据](https://github.com/aparrish/material-of-language/blob/master/manipulating-font-data.ipynb)
+  - [点控线初谈](https://pomax.github.io/bezierinfo)
+
 ## 五线谱简谱排版
 * [LaTeX排版的中文乐谱](https://www.latexstudio.net/archives/11337.html)
 * [用Lilypond排版简谱](https://www.cnblogs.com/quantumman/p/5189701.html)
