@@ -39,6 +39,13 @@ sudo apt install ttf-mscorefonts-installer
 
 * [How to install Microsoft TrueType Fonts on Ubuntu-based Distributions](https://itsfoss.com/install-microsoft-fonts-ubuntu/)
 
+
+## 谷歌字体集
+- [看板](https://notofonts.github.io/)
+- [工具](https://github.com/notofonts/nototools)
+- [并集](https://github.com/notofonts/notofonts.github.io/tree/main/megamerge)
+
+
 ## 两套大字体
 ```bash
 sudo apt install fonts-babelstone-han
