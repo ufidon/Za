@@ -530,6 +530,65 @@ git clone git@github.com:ufidon/Za.git
 ## Git教程
 * [集锦](https://gist.github.com/jaseemabid/1321592)
 
+## wsl2高级配置
+```powershell
+# 1. Enable Hyper-V and Management PowerShell Features:
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Management-PowerShell
+
+# 2. Create an External Virtual Switch in Hyper-V:
+New-VMSwitch -Name "External Switch" -NetAdapterName eth0
+
+# 3. Modify the WSL Configuration:
+# $env:USERPROFILE/.wslconfig to configure global settings 
+#   across all installed distributions running on WSL 2.
+[wsl2]
+networkingMode=bridged
+vmSwitch="External Switch"
+dhcp=true
+ipv6=true
+
+# 3.1 In powershell,
+wsl --shutdown # then turn on the guest
+
+# 3.2 verify the networkingMode in guest Linux
+wslinfo --networking-mode
+
+# 4. Enable systemd in the WSL Distribution:
+# /etc/wsl.conf to configure local settings per-distribution 
+#   for each Linux distribution running on WSL 1 or WSL 2.
+[boot]
+systemd=true
+[network]
+hostname = HOSTAGE
+generateResolvConf = false
+
+# 5. Configure Network Addressing:
+# 5.1 For dynamic address configuration
+# /etc/systemd/network/10-eth0.network:
+[Match]
+Name=eth0
+[Network]
+DHCP=yes
+
+# 5.2 For static address configuration, use
+[Match]
+Name=eth0
+[Network]
+Address=192.168.x.xx/24
+Gateway=192.168.x.x
+DNS=192.168.x.x
+
+# 6. Link systemd Resolv.conf:
+ln -sfv /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
+# 7. Restart the WSL 2 instance and verify the network configuration with:
+ip addr show eth0
+```
+
+- [WSL2 make available/visible all Windows' network adapters inside Ubuntu](https://superuser.com/questions/1670969/wsl2-make-available-visible-all-windows-network-adapters-inside-ubuntu)
+- [Advanced settings configuration in WSL](https://learn.microsoft.com/en-us/windows/wsl/wsl-config)
+
 ## 版本管理
 ```bash
 # 0. 都安装到/opt
