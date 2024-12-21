@@ -38,3 +38,11 @@ patch:
     - schema: clover
 
 ```
+
+## 字母序号
+- 造号
+```python
+for i in range(26):
+  print(f"'/x{chr(i+ord('a'))}': [ {chr(i+ord('⒜'))}, {chr(i+ord('ⓐ'))}, {chr(i+ord('Ⓐ'))}, {chr(i+ord('🄐'))}, {chr(i+ord('🄰'))}, {chr(i+ord('🅐'))}, {chr(i+ord('🅰'))} ]")
+```  
+- [rime特殊符号](./tools/symbols.yaml)
