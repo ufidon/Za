@@ -46,3 +46,8 @@ for i in range(26):
   print(f"'/x{chr(i+ord('a'))}': [ {chr(i+ord('⒜'))}, {chr(i+ord('ⓐ'))}, {chr(i+ord('Ⓐ'))}, {chr(i+ord('🄐'))}, {chr(i+ord('🄰'))}, {chr(i+ord('🅐'))}, {chr(i+ord('🅰'))} ]")
 ```  
 - [rime特殊符号](./tools/symbols.yaml)
+
+## 雾凇拼音
+- [雾凇拼音](https://dvel.me/posts/rime-ice/#%e5%9f%ba%e6%9c%ac%e5%a5%97%e8%b7%af)
+  - [仓库](https://github.com/iDvel/rime-ice)
+- [librime](https://github.com/rime/librime)
