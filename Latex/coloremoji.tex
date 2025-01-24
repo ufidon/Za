@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{fontspec}
+\setmainfont{FandolKai}
+
+% 编译: lualatex coloremoji.tex
+
+% fontspec基本命令
+% \setmainfont{Times New Roman}  % Set the main document font
+% \setsansfont{Arial}            % Set the sans-serif font
+% \setmonofont{Courier New}      % Set the monospaced font
+% \setmathfont{Latin Modern Math} % set specific fonts for math mode
+
+% 字体调用命令: 
+% \newfontfamily\myfancyfont{Papyrus}
+% {\myfancyfont This is in Papyrus.}
+% Fallback Fonts: for characters not available in the primary font.
+% \newfontfamily\fallbackfont{Symbola}
+% Main font: ABCDEF \fallbackfont ♡ ♣ ♦ ♠ 
+
+% 设默认通篇字体特色: 
+% \defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
+% 字体特色: like small caps, ligatures, and number styles.
+% \setmainfont{Times New Roman}[Ligatures=TeX, Numbers=OldStyle, SmallCapsFeatures={LetterSpace=5.0}]
+% 尺寸缩放 :\setmainfont{Times New Roman}[Scale=1.2]
+% 字体变种: \setmainfont{Roboto}[ItalicFont={Roboto-Italic}, BoldFont={Roboto-Bold}]
+% 文本色形: \usepackage{fontspec, xcolor}
+% \textcolor{blue}{This is blue text.} \textbf{\textcolor{red}{This is bold and red.}}
+
+% 从文件载字体: \setmainfont{FontAwesome}[Path=/path/to/fonts/, Extension=.ttf]
+
+
+% [咋使用彩色表情包?](https://tex.stackexchange.com/questions/497403/how-to-use-noto-color-emoji-with-lualatex)
+
+% \newcommand{\emoji}[1]{
+%   {\setmainfont{Noto Color Emoji}[Renderer=Harfbuzz]{#1}}
+% }
+
+\newfontfamily{\emoji}{Noto Color Emoji}[Renderer=Harfbuzz]
+
+% emoji regex:
+%[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]
+
+
+\begin{document}
+  % \begin{itemize}
+  %   \item 高兴: \emoji{😍😁😂😃😊🤓😇}
+  %   \item 平静: \emoji{😐🤐🥶🥸😬😶}
+  %   \item 怒厌: \emoji{🙁🤨🥱😠😱😿😈😭}
+  %   \item 多种彩标：\emoji{🎉🪃🦩🐮🕵️🧑🔬🍍🫖🐰💖🧑🦳👹}
+  % \end{itemize}
+
+  \begin{itemize}
+    \item 高兴: {\emoji 😍😁😂😃😊🤓😇}
+    \item 平静: {\emoji 😐🤐🥶🥸😬😶}
+    \item 怒厌: {\emoji 🙁🤨🥱😠😱😿😈😭}
+    \item 多种彩标：{\emoji 🎉🪃🦩🐮🕵️🧑🔬🍍🫖🐰💖🧑🦳👹}
+  \end{itemize}  
+\end{document}
+

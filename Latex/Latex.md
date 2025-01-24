@@ -83,6 +83,10 @@ albatross '🐕️'
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
+## 彩色表情包
+- [示例](./coloremoji.tex)
+- [咋使用彩色表情包?](https://tex.stackexchange.com/questions/497403/how-to-use-noto-color-emoji-with-lualatex)
+
 ## 合并字体档
 ```python
 from fontTools.ttLib import TTFont
@@ -174,7 +178,9 @@ fontforge -script convert_to_bitmap.pe input_font.ttf output_font
 ## 竖排古籍
 * [upLatex](https://github.com/Steve-Cheung-emct)
 
-## 纯文本笔记
+## 纯文本笔记 markdown 转 pdf
+- 长串换行
+
 ```bash
 # 1. md转pdf
 pandoc doc.md -o doc.pdf --pdf-engine=xelatex --toc --highlight-style=tango -V mainfont="FreeSerif" -V fontsize=12pt --wrap=auto
@@ -197,6 +203,10 @@ for f in *.md; do pandoc --pdf-engine=xelatex \
 --highlight-style tango -V colorlinks -V urlcolor=NavyBlue \
 -f markdown-raw_tex  $f -o ${f%%.md}.pdf  ; done
 ```
+
+- 含彩色表情包`笔记` → pdf
+  - [示例](./markdown/ce.md)
+
 
 - [纯文本做笔记 --- 使用 Pandoc 把 Markdown 转为 PDF 文件](https://jdhao.github.io/2017/12/10/pandoc-markdown-with-chinese/)
   - [Pandoc User’s Guide](https://pandoc.org/MANUAL.html)
