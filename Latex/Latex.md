@@ -176,6 +176,21 @@ fontforge -script convert_to_bitmap.pe input_font.ttf output_font
 
 ## 纯文本笔记
 ```bash
+# 1. md转pdf
+pandoc doc.md -o doc.pdf --pdf-engine=xelatex --toc --highlight-style=tango -V mainfont="FreeSerif" -V fontsize=12pt --wrap=auto
+
+# 长串换行
+---
+header-includes:
+  - \usepackage{seqsplit}
+---
+
+Here is a long digit string:
+
+\$1.6726219 \times 10^{-27} \approx 0.\seqsplit{000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000100100001001100110101101111110101111100110000011}\_2\$
+
+
+# 2. 批量转换
 for f in *.md; do pandoc --pdf-engine=xelatex \
 -V "geometry:margin=1in"  -V CJKmainfont="SimSun" \
 -V "monofont:Noto Sans Mono CJK SC"   --toc -N  \
