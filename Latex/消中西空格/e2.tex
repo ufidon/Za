@@ -1,6 +1,7 @@
 \documentclass{article}
 % 编译: xelatex  -shell-escape -8bit   e2.tex
 \usepackage[CJKecglue]{xeCJK}
+\xeCJKsetup{CJKmath=true}
 
 \begin{document}
 \section{前言}
@@ -10,4 +11,18 @@
 数1学2、中a英c文皆可以混排。You can intersperse math, Chinese and English (Latin script) without adding extra environments.
 
 這是繁體中文。
+
+{\heiti 黑体} {\songti 宋体} {\fangsong 仿宋} {\kaishu 楷书}
+
+$离_开^了$
+
+千山鸟飞绝，
+
+
+\[ 压强=\frac{压力}{受力面积}\times \alpha \times β \]
+
+$ \int_{下限}^{上限} 力(r)dr $
+
+\inputminted[linenos,frame=lines,framesep=2mm,breaklines,breaksymbolleft={},fontsize=\small]{c++}{环城2.cpp}
+
 \end{document}
