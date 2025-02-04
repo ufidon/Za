@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{minted}
+
+% Set up separate fonts
+% \setmathfont{XITS Math} % Use standard math font
+% \setmathfont{STIX Two Math}
+\setmathfont{Libertinus Math}
+% \setmathfont{TeX Gyre Pagella Math}
+
+\setsansfont{Noto Sans CJK SC}
+\setmonofont{Noto Sans Mono CJK SC}
+\setmainfont{Noto Serif CJK SC} % Use a CJK font for Chinese characters
+\newfontfamily{\emoji}{Noto Color Emoji}[Renderer=Harfbuzz]
+\newcommand{\符}[1]{\text{\emoji #1}}
+
+\begin{document}
+\[
+\text{能} = \符{🐛}^\符{🦆} \text{质} \cdot \text{光速}^\符{🐠}
+\]
+
+$$ I_{\text{式}}=\oiiint_\符{ 🐇️}y^\符{🌸}f(\符{🐛},\符{🐞})\cdot{}d\符{🐞}d\符{🐛} $$
+
+\inputminted[linenos,frame=lines,framesep=2mm,breaklines,breaksymbolleft={},fontsize=\small]{c++}{环城2.cpp}
+
+
+\end{document}
