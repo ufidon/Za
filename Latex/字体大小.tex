@@ -1,0 +1,26 @@
+\documentclass{article}
+
+\usepackage{fontspec}
+\usepackage{fp} % For floating-point arithmetic
+
+% Define the emoji font (e.g., Symbola or Noto Color Emoji)
+\newfontfamily\emojifont{Noto Color Emoji}[Renderer=Harfbuzz]
+
+% Define the \emojitext command with dynamic baseline skip
+\newcommand{\emojitext}[3]{%
+  \FPmul{\行距}{1.2}{#1}% Multiply fontsizenumber by 1.2
+  {\fontsize{#1#2}{\行距#2}\selectfont\emojifont #3}%
+}
+
+\begin{document}
+
+% Use the command with different sizes and emojis
+1.5 em: \emojitext{1.5}{em}{😀🚀 🌈} right pig
+
+2 em: \emojitext{2}{em}{🌟 🎉🍕} right pig
+
+3 em: \emojitext{3}{em}{🚀🌍 🛸} right pig
+
+next line.
+
+\end{document}
