@@ -6,8 +6,8 @@
 
 TEXER=xelatex
 BIBER=bibtex
-BOOK=main
-CHAPDIR=./chapters
+BOOK=主
+CHAPDIR=./
 
 all: $(BOOK).tex  $(CHAPDIR)/*.tex
 	$(TEXER) $(BOOK)
@@ -21,4 +21,4 @@ all: $(BOOK).tex  $(CHAPDIR)/*.tex
 
 .PHONY: clean
 clean:
-	rm *.aux *.log	*.toc
+	rm *.aux *.log	*.toc *.bbl *.blg *.pdf

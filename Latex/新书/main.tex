@@ -1,0 +1,89 @@
+\documentclass{book}
+\usepackage[UTF8]{ctex} % 支持中文
+\usepackage[backend=biber,style=gb7714-2015]{biblatex} % 使用 biber 和 GB/T 7714-2015 样式
+\addbibresource{references.bib} % 加载参考文献数据库
+
+% 每章独立目录
+\usepackage{tocloft} % 自定义目录格式
+\newcommand{\chaptertoc}{%
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\contentsname} % 将目录添加到主目录
+  \tableofcontents % 生成当前章的目录
+}
+
+\begin{document}
+% 全局引用
+\nocite{*} % 打印所有文献，即使未引用
+% \cite{author2023} % 引用示例
+
+% 主目录
+\tableofcontents
+
+% 第一章
+\begin{refsection} % 开始独立的参考文献部分
+\chapter{第一章}
+
+% 生成第一章的目录
+\chaptertoc
+
+这是一个引用示例 \cite{author2023}。
+
+% 在每章结束后打印参考文献
+\printbibliography[heading=subbibliography, title={本章参考文献}]
+\end{refsection} % 结束独立的参考文献部分
+
+% 第二章
+\begin{refsection} % 开始独立的参考文献部分
+\chapter{第二章}
+
+% 生成第二章的目录
+\chaptertoc
+
+这是另一个引用示例 \cite{lee2022}。
+
+% 在每章结束后打印参考文献
+\printbibliography[heading=subbibliography, title={本章参考文献}]
+\end{refsection} % 结束独立的参考文献部分
+
+% 全局参考文献列表
+\printbibliography[heading=bibintoc, title={全局参考文献}]
+
+\end{document}
+
+% \documentclass{book}
+% \usepackage[UTF8]{ctex} % 支持中文
+% \usepackage[backend=biber,style=gb7714-2015]{biblatex} % 使用 biber 和 GB/T 7714-2015 样式
+% % 用「深度求索」生成
+% % 加载参考文献数据库
+% \addbibresource{references.bib}
+
+% \begin{document}
+% % 全局引用
+% \nocite{*} % 打印所有文献，即使未引用
+% % \cite{author2023} % 引用示例
+
+% % 第一章
+% \begin{refsection} % 开始独立的参考文献部分
+% \chapter{第一章}
+
+% 这是一个引用示例 \cite{author2023}。
+
+% % 在每章结束后打印参考文献
+% \printbibliography[heading=subbibliography, title={本章参考文献}]
+% \end{refsection} % 结束独立的参考文献部分
+
+% % 第二章
+% \begin{refsection} % 开始独立的参考文献部分
+% \chapter{第二章}
+
+% 这是另一个引用示例 \cite{lee2022}。
+
+% % 在每章结束后打印参考文献
+% \printbibliography[heading=subbibliography, title={本章参考文献}]
+% \end{refsection} % 结束独立的参考文献部分
+
+% % 全局参考文献列表
+% \printbibliography[heading=bibintoc, title={全局参考文献}]
+
+% \end{document}
